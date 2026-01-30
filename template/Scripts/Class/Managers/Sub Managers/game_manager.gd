@@ -27,6 +27,7 @@ func _ready() -> void:
 	GVar.set("active_game_manager",self)
 	GVar.set("active_signal_bus",signal_bus)
 	super()
+	signal_bus.game_ready.emit()
 
 func create_sub_managers():
 	for key in managers_to_load:
@@ -46,6 +47,7 @@ func check_all_managers_ready():
 
 func _construct_player_controller() -> void:
 	var player_controller : PlayerController = PlayerController.new()
+	signal_bus.game_ready.connect(player_controller._game_start)
 	GVar.set("player_controller", player_controller)
 	add_child(player_controller)
 
