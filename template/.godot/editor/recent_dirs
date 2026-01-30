@@ -1,10 +1,9 @@
+res://Scenes/World/
 res://
-res://Scenes/Components
-D:/Godot/Template-Project/template/Exports
-res://Assets/Sprites
-res://Assets/Audio
-res://Scripts/Globals
-res://Assets/Audio/AudioFiles
-res://Scripts/Resources/Materials
-res://Scripts/Resources/Materials/Master Materials
-res://Assets/Meshes
+res://Scenes/Components/
+res://Assets/Sprites/
+res://Assets/Audio/
+res://Scripts/Globals/
+res://Scripts/Resources/Materials/
+res://Scripts/Resources/Materials/Master Materials/
+res://Assets/Meshes/

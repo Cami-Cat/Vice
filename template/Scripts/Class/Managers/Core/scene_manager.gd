@@ -4,7 +4,7 @@ extends ManagerBase
 signal scene_opened()
 signal game_ready()
 
-const DEFAULT_SCENE:PackedScene = preload("res://Scenes/BaseScene/scene_base.tscn")
+const DEFAULT_SCENE:PackedScene = preload("res://Scenes/BaseScene/scene_base_3d.tscn")
 var current_scene:SceneBase
 
 @onready var primary_canvas_layer_node: CanvasLayer = $PrimaryCanvasLayerNode

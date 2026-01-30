@@ -3,7 +3,7 @@ extends ManagerBase
 
 signal all_managers_ready()
 
-var managers_to_load:Array[GVar.SUB_MANAGERS] = [GVar.SUB_MANAGERS.UI_MANAGER,GVar.SUB_MANAGERS.INPUT_MANAGER,]
+var managers_to_load:Array[GVar.SUB_MANAGERS] = [GVar.SUB_MANAGERS.UI_MANAGER]
 var manager_dict:Dictionary[GVar.SUB_MANAGERS,ManagerBase]
 var managers_ready_state_dict:Dictionary
 
@@ -23,6 +23,7 @@ var current_state : STATES
 func _ready() -> void:
 	create_sub_managers()
 	await all_managers_ready
+	_construct_player_controller()
 	GVar.set("active_game_manager",self)
 	GVar.set("active_signal_bus",signal_bus)
 	super()
@@ -42,6 +43,11 @@ func sub_manager_ready(sub_manager:ManagerBase):
 func check_all_managers_ready():
 	if (managers_ready_state_dict.size() == managers_to_load.size() && managers_ready_state_dict.values().all(GFnc.all_true)):
 		all_managers_ready.emit()
+
+func _construct_player_controller() -> void:
+	var player_controller : PlayerController = PlayerController.new()
+	GVar.set("player_controller", player_controller)
+	add_child(player_controller)
 
 func _game_ready():
 	pass

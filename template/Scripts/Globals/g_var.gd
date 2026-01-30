@@ -73,3 +73,9 @@ var world_origin:WorldOrigin:
 		return world_origin
 	set(value):
 		world_origin = value
+
+var player_controller:PlayerController:
+	get:
+		return player_controller
+	set(value):
+		player_controller = value
