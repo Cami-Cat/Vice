@@ -3,6 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://doij72a0ut3nk" path="res://Scenes/BaseScene/scene_base_3d.tscn" id="1_rpwb6"]
 [ext_resource type="PackedScene" uid="uid://7kiaigr1j55p" path="res://Scenes/Character/Pawn.tscn" id="2_fu27m"]
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_fu27m"]
+
 [node name="scene_base_3d" unique_id=686478997 instance=ExtResource("1_rpwb6")]
 
+[node name="Floor" type="MeshInstance3D" parent="World Origin" parent_id_path=PackedInt32Array(142773117) index="0" unique_id=478081192]
+transform = Transform3D(127.88001, 0, 0, 0, 1, 0, 0, 0, 127.88001, 0, 0, 0)
+mesh = SubResource("PlaneMesh_fu27m")
+skeleton = NodePath("../..")
+
 [node name="Pawn" parent="." index="2" unique_id=840618511 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47961712, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=2022802301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3700628, 0)

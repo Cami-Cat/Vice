@@ -15,6 +15,6 @@ func _ready() -> void:
 func _validate_camera_target() -> void:
 	if !is_instance_valid(camera_target):
 		var _camera_target = get_tree().get_first_node_in_group("CameraTarget")
-		if !camera_target : return
+		if !_camera_target : return
 		else : camera_target = _camera_target
 	return

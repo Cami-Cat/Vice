@@ -45,6 +45,7 @@ enabled=PackedStringArray()
 "UI Manager"=""
 MainCamera=""
 Pawn=""
+CameraTarget=""
 
 [input]
 

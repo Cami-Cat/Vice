@@ -16,15 +16,16 @@ func _init() -> void:
 	return
 
 func _construct_camera_rig() -> void:
-	var camera_target : Node3D = Node3D.new()
-	
 	player_camera.name = "PlayerCamera"
 	player_camera.add_to_group("ActiveCamera")
-	camera_target.name = "CameraTarget"
-	camera_target.add_to_group("CameraTarget")
+	player_camera.make_current()
+	## Below are third person rules.
+	#var camera_target : Node3D = Node3D.new()
+	#camera_target.name = "CameraTarget"
+	#camera_target.add_to_group("CameraTarget")
 	
-	camera_target.add_child(player_camera)
-	GVar.active_scene.add_child(camera_target)
+	#camera_target.add_child(player_camera)
+	GVar.active_scene.add_child(player_camera)
 	return
 
 func _connect_signals() -> void:
@@ -58,6 +59,7 @@ func _possess_pawn(pawn : Pawn) -> bool:
 	possessed_pawn = pawn
 	pawn._is_possessed = true
 	print("Successfully possessed pawn: %s" % [possessed_pawn])
+	_set_camera_target(possessed_pawn)
 	
 	return true
 	
@@ -69,3 +71,16 @@ func _unpossess_pawn(pawn : Pawn) -> bool:
 	pawn._is_possessed = false
 	
 	return true
+
+func _set_camera_target(to : Variant) -> void:	
+	if !is_instance_of(to, Pawn) || !typeof(to) != TYPE_VECTOR3:
+		print("Cannot set target to: [%s], it must be of type Pawn or Vector3" % [to])
+		return
+	if is_instance_of(to, Pawn):
+		for child : Node in to.get_children():
+			if child.is_in_group("CameraTarget"):
+				to = child.position
+	
+	var tween = GTwn._tween_property(player_camera, "position", to, 0.5, Tween.TransitionType.TRANS_SINE)
+	await GTwn.kill_tween(tween)
+	return

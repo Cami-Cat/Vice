@@ -76,5 +76,4 @@ func kill_tween(in_tween : Tween) -> bool:
 		return false
 	if in_tween.is_running() : await in_tween.finished
 	in_tween.kill()
-	push_error(str(self), "Tween killed.")
 	return true

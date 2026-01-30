@@ -1,7 +1,9 @@
-CollisionShape3D
+Node3D
 MeshInstance3D
-CharacterBody3D
 Camera3D
+OmniLight3D
+CollisionShape3D
+CharacterBody3D
 Camera2D
 Node
 Node2D
@@ -9,7 +11,4 @@ Timer
 SubViewport
 SubViewportContainer
 Container
-Node3D
 TextureRect
-SceneBase3D
-ButtonParent
