@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2cko555i86ca"]
+
+[ext_resource type="Script" uid="uid://cx8v62qiljagl" path="res://Scripts/UI/World Space/advanced_label_3d.gd" id="1_twuy2"]
+
+
+[node name="Number" type="Label3D"]
+layers = 2
+billboard = 1
+text = "1"
+font_size = 128
+outline_size = 16
+script = ExtResource("1_twuy2")

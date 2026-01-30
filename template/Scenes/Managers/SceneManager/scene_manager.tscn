@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://67abrqnjvn8f"]
+
+[ext_resource type="Script" uid="uid://bm7houvwrwfkv" path="res://Scripts/Class/Managers/Core/scene_manager.gd" id="1_suwsw"]
+[ext_resource type="Script" uid="uid://djivrtbh6jgne" path="res://Scripts/Class/Utility/auto_layer.gd" id="2_evry8"]
+[ext_resource type="PackedScene" uid="uid://5tcexbhwk8pg" path="res://Scenes/Utility/TransitionScreen/transition_screen.tscn" id="2_nwdg6"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_suwsw")
+
+[node name="PrimaryCanvasLayerNode" type="CanvasLayer" parent="."]
+script = ExtResource("2_evry8")
+_layer = 2
+
+[node name="Transition layer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+script = ExtResource("2_evry8")
+_layer = 1
+
+[node name="transition_screen" parent="Transition layer" instance=ExtResource("2_nwdg6")]
+z_index = 0
+y_sort_enabled = true

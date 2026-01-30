@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://12ypgldiby12"]
+
+[ext_resource type="Script" uid="uid://b3unslx74mc8u" path="res://Scripts/Scene Management/scene_base.gd" id="1_a4ylb"]
+[ext_resource type="Script" uid="uid://djivrtbh6jgne" path="res://Scripts/Class/Utility/auto_layer.gd" id="2_ht37y"]
+
+[node name="SceneBase" type="Node"]
+script = ExtResource("1_a4ylb")
+
+[node name="UpperSceneCanvas" type="CanvasLayer" parent="."]
+script = ExtResource("2_ht37y")
+_layer = 3
+
+[node name="LowerSceneCanvas" type="CanvasLayer" parent="UpperSceneCanvas"]
+script = ExtResource("2_ht37y")
+_layer = 4

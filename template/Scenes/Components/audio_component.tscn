@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqaetvsjdpemf"]
+
+[ext_resource type="Script" uid="uid://qs8cl6tsq7ss" path="res://Scripts/Components/audio_component.gd" id="1_nte4v"]
+
+[node name="Audio Component" type="Node"]
+script = ExtResource("1_nte4v")
+audio_array = Array[AudioStream]([null])

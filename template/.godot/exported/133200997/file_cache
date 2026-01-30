@@ -1,0 +1,51 @@
+res://Assets/Audio/Audio_Bus.tres::7aafbe3186ed581ce390f7d2f87a4c50::1761474279::res://.godot/exported/133200997/export-f2c2fa83cbf541c5072d4babe6633f73-Audio_Bus.res
+res://Assets/Fonts/shop_ui_description.tres::ea7cb86230774ecf149837ce1d8934b1::1761414199::res://.godot/exported/133200997/export-b73b444afbb8ae24066dadd41279fc07-shop_ui_description.res
+res://Assets/Fonts/shop_ui_title.tres::4716ec45461c5fa956255a09621286bc::1761421275::res://.godot/exported/133200997/export-df1f111ef37dbcb9099d154fb6ebb5be-shop_ui_title.res
+res://Assets/Meshes/Dice/Dice Mesh/Material.002.tres::e0542e459117336de315e2ef96c11536::1761408914::res://.godot/exported/133200997/export-563b860c7cfde626a16f2bb22c7e713f-Material.002.res
+res://Scenes/Dice Object/dice.tscn::eba5cb59511b253f17f273dedc69da13::1761480073::res://.godot/exported/133200997/export-6003e3bb64dce8c1fd1ac9857489b362-dice.scn
+res://Scenes/Dice Object/dice_event.tscn::6430babe5e0dcf69d055ba666d68619c::1761488677::res://.godot/exported/133200997/export-1d6d10b658f535804ac75ccb2f74a8b9-dice_event.scn
+res://Scenes/Dice Object/dice_face_scene.tscn::02dfcd665a7458d9392aa11c80006352::1761481869::res://.godot/exported/133200997/export-229fe7a5848f7287b5a3688c25a93661-dice_face_scene.scn
+res://Scenes/Dice Object/number.tscn::54118cc3ea95382099e1eb3b1b24608b::1761406078::res://.godot/exported/133200997/export-09f30b95cf5868e8a6f136217dcdde2f-number.scn
+res://Scenes/Menu/main_menu.tscn::b5bc1738f6950ebb9a6c91c057fe0980::1761488246::res://.godot/exported/133200997/export-4a1affdcdd35a1a6cb5ee07c6d0a246e-main_menu.scn
+res://Scenes/Nodes/CanvasLayers/debug_canvas_layer.tscn::4fb275191a3bd29c7238b5c6c1475fbf::1761321201::res://.godot/exported/133200997/export-401576894e2d085c35c38d9f0bf32b80-debug_canvas_layer.scn
+res://Scenes/Nodes/Core/GameCore/game_core.tscn::aae34713ebbf8bf778f27035930f9e48::1761321461::res://.godot/exported/133200997/export-2e7b5d76436e9bdfefaa7bef94bcdaa8-game_core.scn
+res://Scenes/Nodes/Managers/DiceManager/dice_manager.tscn::335053802d3cab6681457fe4d28189ac::1761395951::res://.godot/exported/133200997/export-0a0bf1f0bc3c02baf6b2cd845ff75106-dice_manager.scn
+res://Scenes/Nodes/Managers/GameManager/game_manager.tscn::9be21d785ca1041d01ed5d6075ec2bd9::1761321201::res://.godot/exported/133200997/export-3d267d6ff438a13ef0beb8c03b8f77b3-game_manager.scn
+res://Scenes/Nodes/Managers/SceneManager/scene_manager.tscn::de49ff8c5d728bf9056c790a93be100c::1761486810::res://.godot/exported/133200997/export-b2f416b88821ccd9f70be5229919bbc8-scene_manager.scn
+res://Scenes/Nodes/Scenes/BaseScene/scene_base.tscn::039b7c445765e76aa76be31d91bf153a::1761401303::res://.godot/exported/133200997/export-3d1dd279c85db5669b7c9a48bea3db93-scene_base.scn
+res://Scenes/Nodes/Scenes/BaseScene/scene_base_3d.tscn::12643c81122365abfc851f45548b19a4::1761474279::res://.godot/exported/133200997/export-e6859b497f7200a672fa65c4d33695d0-scene_base_3d.scn
+res://Scenes/Nodes/Scenes/BaseScene/test_world_3d.tscn::b0da64df3913ab2f00b421f79ecac4ea::1761395962::res://.godot/exported/133200997/export-57db3c95d1d31f355e703d0e58d260c4-test_world_3d.scn
+res://Scenes/Nodes/Scenes/GameBoard/game_board.tscn::ac99d88e65d558783adb95ea9f5260f1::1761486810::res://.godot/exported/133200997/export-71ab809d36ff11aa70008ef1da91a267-game_board.scn
+res://Scenes/Nodes/Scenes/GameBoard/toon_craps_board.tscn::e257924a2ad9d0c3d9b6ae18291ab379::1761474279::res://.godot/exported/133200997/export-4f99b2f0f68fc14b35c0061fa213577d-toon_craps_board.scn
+res://Scenes/Nodes/Scenes/GameBoard/toon_craps_board_decal.tscn::282fb761fd7bd5be6ba37f80fb72b7a1::1761474279::res://.godot/exported/133200997/export-8b7bf114f3d19436ceb1c87d6e19c043-toon_craps_board_decal.scn
+res://Scenes/Nodes/Scenes/GameBoard/toon_craps_board_frame.tscn::69a6e4e8f4abccdb6456eb7eea6a573f::1761474279::res://.godot/exported/133200997/export-50acc2ca34e4198f69d24c5910bee0e1-toon_craps_board_frame.scn
+res://Scenes/Nodes/Scenes/GameBoard/toon_score_board_frame.tscn::8af22083684af2b4bcf93cf169f45c28::1761474279::res://.godot/exported/133200997/export-a6af7b9e11b56b9b2dcdf4e34a6ea265-toon_score_board_frame.scn
+res://Scenes/Nodes/Scenes/GameBoard/toon_swing_board.tscn::1721b9df397f3a3c6720ebd795c1a966::1761474279::res://.godot/exported/133200997/export-04e584d38cd3f5cacaa1afb7bb92316a-toon_swing_board.scn
+res://Scenes/Nodes/Scenes/Shop/shop_scene.tscn::2915f535dcddfa90f240594d3f3a3b89::1761486810::res://.godot/exported/133200997/export-2412b6399e988cfa1db6af4a91b2d6b1-shop_scene.scn
+res://Scenes/Nodes/Scenes/UI/shop_ui.tscn::660ee71e767e7b2eefc00bfe1f888a0a::1761413798::res://.godot/exported/133200997/export-2428e32010a7f7346bc3db24b2a91289-shop_ui.scn
+res://Scenes/Nodes/Scenes/game_world.tscn::835e80e53faca3acaed66411f79fc5fc::1761481998::res://.godot/exported/133200997/export-f646a3807c050cdb8dd496c42a081668-game_world.scn
+res://Scenes/Nodes/Scenes/shop.tscn::0dd20060f864219752af9017f234f7e4::1761395962::res://.godot/exported/133200997/export-0fcefd83bf4569195006d67039e2e0ef-shop.scn
+res://Scenes/Nodes/UI/ui_main.tscn::118b21f0ffd7ab7e666c6dba7c50b7fa::1761488061::res://.godot/exported/133200997/export-33308147e130eda9e39f9a246c19eefb-ui_main.scn
+res://Scenes/Nodes/Utility/FpsCounter/fps_counter.tscn::b8a750594caf74700423de75f1a04183::1761321201::res://.godot/exported/133200997/export-de1c47c194867ca42b5a94853ac3ef25-fps_counter.scn
+res://Scenes/Nodes/Utility/TransitionScreen/transition_screen.tscn::da651a68b8710b9f0a742dc2a55460ca::1761486810::res://.godot/exported/133200997/export-eb7253fe0750d62efd40b342e11311c9-transition_screen.scn
+res://Scenes/Nodes/Utility/dice_detection_area.tscn::4d41fcba85f7030fe3cf84b9a2c02e26::1761474279::res://.godot/exported/133200997/export-4e97ad93462c6a444848f0bf4b3060d5-dice_detection_area.scn
+res://Scenes/WorldObjects/cup.tscn::ec019750aa74c67516dbba44e61fbca5::1761395951::res://.godot/exported/133200997/export-8375cf2b1ea03df1300dc1e2e3aaa131-cup.scn
+res://Scenes/pixelation_control.tscn::5cadd8f04fa5163cbf48ae5b2ff7e637::1761395951::res://.godot/exported/133200997/export-c547ebcf9473d42117b394542ae3e7f6-pixelation_control.scn
+res://Scripts/Resources/ColorPalette/sgoon_editor_color_palette.tres::f343ef5b9d03bf7558f3c3fee8655f7e::1761321201::res://.godot/exported/133200997/export-497dda91c737102adb5472fccf9461e0-sgoon_editor_color_palette.res
+res://Scripts/Resources/Materials/Master Materials/master_mask_toon_mat.tres::3f6862c3ba72097664ece4f3783548fd::1761408979::res://.godot/exported/133200997/export-46f9b7254057225bdebe14919a0dec67-master_mask_toon_mat.res
+res://Scripts/Resources/Materials/Master Materials/master_toon_shader_mat.tres::6425c966f7562c4ecddbbdbfe6d187fe::1761409083::res://.godot/exported/133200997/export-4c3750d6bbf3764a481d2afbdb01b6a7-master_toon_shader_mat.res
+res://Scripts/Resources/Materials/Master Materials/master_vertex_invert_outline.tres::2f7adc90d333b7f1b982d28906262fe1::1761395951::res://.godot/exported/133200997/export-97e9c7aa088d8bd3d3f022df726844b7-master_vertex_invert_outline.res
+res://Scripts/Resources/Materials/dice_face_material.tres::d1e2f27896573052bcc8ff2be2d2a7c5::1761408914::res://.godot/exported/133200997/export-1f2249576d1dc295bc81fa2e4b13982f-dice_face_material.res
+res://Scripts/Resources/Materials/screen_transition_material.tres::bd2856fe90b7550b0e57a9e7c11d096a::1761321201::res://.godot/exported/133200997/export-60542fb770aa5a2db7bbcc4f887061ef-screen_transition_material.res
+res://Scripts/Resources/Upgrades/FaceUpgrades/all_1s_upgrade.tres::4f8c4dbc4b7ac0679375af24727f9595::1761477431::res://.godot/exported/133200997/export-acde5371454d0e5df94d43dcc15e1398-all_1s_upgrade.res
+res://Scripts/Resources/Upgrades/FaceUpgrades/all_6s_upgrade.tres::0fed63103dfe4fecee8ee10d7e862ae6::1761477431::res://.godot/exported/133200997/export-1fa229b666ec769edc37c1c9bdbbb502-all_6s_upgrade.res
+res://Scripts/Resources/Upgrades/FaceUpgrades/bomb_upgrade.tres::1be5120b292b4785f87b8d575de732cb::1761474279::res://.godot/exported/133200997/export-e95b89f3cff5919e596a690faa81bbb3-bomb_upgrade.res
+res://Scripts/Resources/Upgrades/FaceUpgrades/lucky7_upgrade.tres::aa82b29335c900c0bf78de8229d2b70d::1761477431::res://.godot/exported/133200997/export-77650ceb45c3924f8d9721c747944b38-lucky7_upgrade.res
+res://Scripts/Resources/Upgrades/bounce_upgrade.tres::f19539f8c7b7d285e5b4d876a66ba00b::1761474279::res://.godot/exported/133200997/export-6511be5777613a666ca3787a468766dd-bounce_upgrade.res
+res://Scripts/Resources/Upgrades/cloud_upgrade.tres::25e4600791e75d5761ff2994c7715368::1761477431::res://.godot/exported/133200997/export-b86f0b85daff32893405ac521da07548-cloud_upgrade.res
+res://Scripts/Resources/Upgrades/force_upgrade.tres::cfdfc76c4abcf4960b4f7a3378b0c329::1761474279::res://.godot/exported/133200997/export-cef531a720b7cfa97c749df3a4fd6aa9-force_upgrade.res
+res://Scripts/Resources/Upgrades/glass_upgrade.tres::303adfa72c64d2a48c91cf308918952d::1761477431::res://.godot/exported/133200997/export-ef6e443d76e8a398c424e3ce9cc0a619-glass_upgrade.res
+res://Scripts/Resources/Upgrades/gravity_upgrade.tres::3a120a89886f9ead1814ef152fa34fba::1761474279::res://.godot/exported/133200997/export-7601f4e13b0e910cde5e7495d5415087-gravity_upgrade.res
+res://Scripts/Resources/Upgrades/Ice_Upgrade.tres::81365925f38066e84a8151242786b1ca::1761477431::res://.godot/exported/133200997/export-05daee9869c73a3d42847e7b84c2a017-Ice_Upgrade.res
+res://Scripts/Resources/Upgrades/tungstun_upgrade.tres::e15f4a459d8a85bd7c1dabc39660e187::1761477431::res://.godot/exported/133200997/export-69d4c02f9a534995fa475c43813a4104-tungstun_upgrade.res
+res://leader_board_scene.tscn::6740d1e2b6655a5f4e5f4be60bdcc07a::1761489120::res://.godot/exported/133200997/export-4f1162a0b6261de5660042e87f3e667f-leader_board_scene.scn

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://doij72a0ut3nk"]
+
+[ext_resource type="Script" uid="uid://8x0m53kjcw14" path="res://Scripts/Scene Management/scene_base_3d.gd" id="2_01f7x"]
+[ext_resource type="Script" uid="uid://5bngowlite7i" path="res://Scripts/Scene Management/world_origin.gd" id="2_ae3c4"]
+[ext_resource type="Script" uid="uid://djivrtbh6jgne" path="res://Scripts/Class/Utility/auto_layer.gd" id="3_rlg4h"]
+
+[node name="scene_base_3d" type="Node3D"]
+script = ExtResource("2_01f7x")
+
+[node name="World Origin" type="Node3D" parent="."]
+script = ExtResource("2_ae3c4")
+
+[node name="Main Camera" type="Camera3D" parent="." groups=["MainCamera"]]
+
+[node name="UpperSceneCanvas" type="CanvasLayer" parent="."]
+script = ExtResource("3_rlg4h")
+_layer = 3
+
+[node name="LowerSceneCanvas" type="CanvasLayer" parent="UpperSceneCanvas"]
+script = ExtResource("3_rlg4h")
+_layer = 4

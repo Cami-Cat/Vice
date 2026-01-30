@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq3rx2qybp6b1"]
+
+[ext_resource type="Script" uid="uid://bpbcbw6dnkant" path="res://Scripts/Class/Managers/Sub Managers/game_manager.gd" id="1_f2nbd"]
+[ext_resource type="Script" uid="uid://c6hxyjb28ypci" path="res://Scripts/Class/Bus/signal_bus.gd" id="2_b1pmp"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_f2nbd")
+
+[node name="SignalBus" type="Node" parent="."]
+script = ExtResource("2_b1pmp")
+metadata/_custom_type_script = "uid://c6hxyjb28ypci"

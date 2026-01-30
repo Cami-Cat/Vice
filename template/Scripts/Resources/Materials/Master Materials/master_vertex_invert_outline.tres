@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://gean6tygwor3"]
+
+[ext_resource type="Shader" uid="uid://dt4itiqpskwr0" path="res://Scripts/Resources/Materials/Master Materials/Shaders/master_vertex_invert_outline.gdshader" id="1_ffkvo"]
+
+[resource]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("1_ffkvo")
+shader_parameter/color = Color(0, 0, 0, 1)
+shader_parameter/thickness = 0.00999999977648

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://5tcexbhwk8pg"]
+
+[ext_resource type="Script" uid="uid://bqyh7oly0gy8r" path="res://Scripts/UI/Utility/transition_screen.gd" id="2_vqmdy"]
+
+[node name="transition_screen" type="ColorRect"]
+z_index = 4096
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_vqmdy")

@@ -1,0 +1,4 @@
+template/.godot/*
+template/.editorconfig
+*.cfg
+

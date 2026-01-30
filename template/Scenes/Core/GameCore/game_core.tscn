@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dn2fb08j70uan"]
+
+[ext_resource type="Script" uid="uid://c0mbica7un2bt" path="res://Scripts/Class/Managers/Core/game_core.gd" id="1_wukxh"]
+[ext_resource type="PackedScene" uid="uid://2stl2hmc1o4b" path="res://Scenes/CanvasLayers/debug_canvas_layer.tscn" id="2_g10ug"]
+
+[node name="GameCore" type="Node" unique_id=972628469]
+script = ExtResource("1_wukxh")
+
+[node name="DebugCanvasLayer" parent="." unique_id=1261751533 instance=ExtResource("2_g10ug")]
