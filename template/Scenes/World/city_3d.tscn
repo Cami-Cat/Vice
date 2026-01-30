@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://kr2u1ywb3ddu"]
 
 [ext_resource type="PackedScene" uid="uid://doij72a0ut3nk" path="res://Scenes/BaseScene/scene_base_3d.tscn" id="1_rpwb6"]
+[ext_resource type="PackedScene" uid="uid://7kiaigr1j55p" path="res://Scenes/Character/Pawn.tscn" id="2_fu27m"]
 
 [node name="scene_base_3d" unique_id=686478997 instance=ExtResource("1_rpwb6")]
+
+[node name="Pawn" parent="." index="2" unique_id=840618511 instance=ExtResource("2_fu27m")]

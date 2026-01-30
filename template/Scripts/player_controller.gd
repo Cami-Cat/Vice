@@ -4,31 +4,37 @@ extends Node
 signal _player_controller_ready()
 signal _player_controller_init_error()
 
-signal try_possess_pawn(pawn : Pawn)
-signal try_unpossess_pawn(pawn : Pawn)
-
 var player_index : int = 0
 var possessed_pawn : Pawn = null
 var input_manager : InputManager = InputManager.new()
-var player_camera : Camera3D = Camera3D.new()
+var player_camera : PlayerCamera3D = PlayerCamera3D.new()
 
 func _init() -> void:
 	name = "PlayerController"
 	add_child(input_manager)
+	_construct_camera_rig()
+	return
+
+func _construct_camera_rig() -> void:
+	var camera_target : Node3D = Node3D.new()
+	
 	player_camera.name = "PlayerCamera"
-	GVar.active_scene.upper_canvas.add_child(player_camera)
+	player_camera.add_to_group("ActiveCamera")
+	camera_target.name = "CameraTarget"
+	camera_target.add_to_group("CameraTarget")
+	
+	camera_target.add_child(player_camera)
+	GVar.active_scene.add_child(camera_target)
 	return
 
 func _connect_signals() -> void:
-	try_possess_pawn.connect(_possess_pawn)
-	try_unpossess_pawn.connect(_unpossess_pawn)
 	return
 
 func _ready() -> void:
-	_game_start()
 	return
 	
 func _game_start() -> void:
+	print("Game Start!")
 	_possess_random_pawn()
 	# Alternative implementation is to give the player the ability to select a random pawn from a sky-view of the city.
 	return
@@ -37,15 +43,21 @@ func _possess_random_pawn() -> void:
 	var pawns : Array[Node] = get_tree().get_nodes_in_group("Pawn")
 	if !pawns.is_empty():
 		var chosen_pawn = pawns.pick_random()
-		try_possess_pawn.emit(chosen_pawn)
+		print("Picking Pawn: %s" % [chosen_pawn])
+		_possess_pawn(chosen_pawn)
 
 func _possess_pawn(pawn : Pawn) -> bool:
-	if !is_instance_valid(pawn) : return false
-	if !pawn.can_possess() : return false
+	if !is_instance_valid(pawn) : 
+		print("Pawn is not a valid instance: %s" % [pawn])
+		return false
+	if !pawn.can_possess() : 
+		print("Cannot possess pawn: %s" % [pawn])
+		return false
 	
 	# Do some other camera logic here.
 	possessed_pawn = pawn
 	pawn._is_possessed = true
+	print("Successfully possessed pawn: %s" % [possessed_pawn])
 	
 	return true
 	
