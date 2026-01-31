@@ -91,5 +91,4 @@ Mask_Action={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-viewport/transparent_background=true
 2d/snap/snap_2d_transforms_to_pixel=true

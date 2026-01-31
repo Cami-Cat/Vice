@@ -1,5 +1,10 @@
 Node3D
 AnimationPlayer
+NavigationObstacle3D
+Node3D
+NavigationRegion3D
+NavigationAgent3D
+WorldEnvironment
 MeshInstance3D
 Skeleton3D
 TextureRect
@@ -12,3 +17,4 @@ CharacterBody3D
 Camera2D
 Node
 Node2D
+Timer
