@@ -7,10 +7,6 @@ const CHARACTER_FEMALE_06 = preload("res://Assets/Meshes/CharacterSkeletalMeshes
 const CHARACTER_FEMALE_07 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_07.fbx")
 
 
-
-
-
-
 const character_mesh_array = [
 	CHARACTER_FEMALE_02,
 	CHARACTER_FEMALE_03,

@@ -1,6 +1,9 @@
 class_name Pawn
 extends CharacterBody3D
 
+const SND_PLAYER_MASK_OFF = preload("res://Assets/Audio/SFX/Raw/snd_player_mask_off.wav")
+const SND_PLAYER_MASK_ON = preload("res://Assets/Audio/SFX/Raw/snd_player_mask_on.wav")
+
 signal is_possessed()
 signal is_unpossessed()
 
@@ -33,6 +36,8 @@ func can_unpossess() -> bool:
 
 func die():
 	print("Gaah I died!")
+	if _is_possessed:
+		GVar.signal_bus.player_died.emit()
 	if death_sound:
 		GSound.play_sound(&"SFX",death_sound)
 	print("I have been killed")
@@ -87,12 +92,14 @@ func toggle_mask():
 		if hunger.current_hunger > hunger.hunger_threshold_to_mask:
 			mask_on = desired_mask
 			GVar.signal_bus.mask_changed.emit(GVar.MASK.MASK_ON)
+			GSound.play_sound(&"SFX",SND_PLAYER_MASK_ON)
 			print("I put the mask on")
 		else:
 			print("Me still hungy")
 	else:
 		mask_on = desired_mask
 		GVar.signal_bus.mask_changed.emit(GVar.MASK.MASK_OFF)
+		GSound.play_sound(&"SFX",SND_PLAYER_MASK_OFF)
 		print("I take the mask off")
 	pass
 

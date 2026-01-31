@@ -1,6 +1,9 @@
 class_name GameManager
 extends ManagerBase
 
+const GAME_MUSIC_AUDIO_PLAYER = preload("res://Assets/Audio/Music/game_music_audio_player.tscn")
+const MUSIC_PLAYER_DEATH = preload("res://Assets/Audio/SFX/Raw/music_playerDeath.ogg")
+
 signal all_managers_ready()
 
 var managers_to_load:Array[GVar.SUB_MANAGERS] = [GVar.SUB_MANAGERS.UI_MANAGER]
@@ -27,7 +30,12 @@ func _ready() -> void:
 	GVar.set("game_manager",self)
 	GVar.set("signal_bus",signal_bus)
 	super()
+	_game_ready()
 	signal_bus.game_ready.emit()
+	signal_bus.player_died.connect(player_died)
+
+func player_died():
+	GSound.play_sound(&"SFX",MUSIC_PLAYER_DEATH)
 
 func create_sub_managers():
 	for key in managers_to_load:
@@ -52,6 +60,7 @@ func _construct_player_controller() -> void:
 	add_child(player_controller)
 
 func _game_ready():
+	GSound.play_music(GAME_MUSIC_AUDIO_PLAYER.instantiate())
 	pass
 
 func _game_end():

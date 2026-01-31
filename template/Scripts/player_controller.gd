@@ -59,6 +59,8 @@ func _possess_pawn(pawn : Pawn) -> bool:
 			
 	possessed_pawn = pawn
 	possessed_pawn.change_visibilty(false)
+	var audio_listener:AudioListener3D = AudioListener3D.new()
+	possessed_pawn.add_child(audio_listener)
 	pawn._is_possessed = true
 	print("Successfully possessed pawn: %s" % [possessed_pawn])
 	_set_camera_target(possessed_pawn)

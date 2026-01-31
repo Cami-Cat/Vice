@@ -1,3 +1,5 @@
+AudioStreamPlayer
+Panel
 Node3D
 AnimationPlayer
 NavigationObstacle3D
@@ -10,4 +12,3 @@ TextureRect
 WorldEnvironment
 DirectionalLight3D
 Camera3D
-OmniLight3D
