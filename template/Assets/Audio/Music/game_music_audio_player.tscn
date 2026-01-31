@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c8kj0a0d4vsnl"]
+
+[ext_resource type="AudioStream" uid="uid://cg0ti5g6nf7hs" path="res://Assets/Audio/Music/music_interactive_fade.tres" id="1_mlqbj"]
+[ext_resource type="Script" uid="uid://c5vrhsfgsaelu" path="res://Assets/Audio/Music/game_music_audio_player.gd" id="2_xxgt1"]
+
+[node name="GameMusicAudioPlayer" type="AudioStreamPlayer" unique_id=975323503]
+stream = ExtResource("1_mlqbj")
+bus = &"Music"
+script = ExtResource("2_xxgt1")

@@ -23,4 +23,5 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="CrossHair" parent="." unique_id=635694219 instance=ExtResource("2_pclsy")]
+modulate = Color(1, 1, 1, 0.45490196)
 layout_mode = 1

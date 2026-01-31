@@ -1,4 +1,6 @@
+AudioStreamWAV
+AudioStream
+AudioStreamInteractive
 Shader
 PhysicsMaterial
-AudioStream
 ShaderMaterial
