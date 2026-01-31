@@ -1,3 +1,4 @@
+res://Scenes/Character/pawn_ai.gd
 CanvasLayer
 RefCounted
 ManagerBase

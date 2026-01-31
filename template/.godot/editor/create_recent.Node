@@ -1,6 +1,8 @@
-res://Scripts/context_raycast3d.gd
-WorldEnvironment
+NavigationObstacle3D
 Node3D
+NavigationRegion3D
+NavigationAgent3D
+WorldEnvironment
 MeshInstance3D
 DirectionalLight3D
 Camera3D
@@ -11,5 +13,3 @@ Camera2D
 Node
 Node2D
 Timer
-SubViewport
-SubViewportContainer
