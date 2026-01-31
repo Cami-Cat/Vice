@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dgfttfst6us1k"]
+
+[ext_resource type="AnimationLibrary" uid="uid://chcauk4ob6h2w" path="res://Assets/Animations/Imported_Anim_Library.res" id="1_lb4a5"]
+
+[node name="GeneralAnimPlayer" type="AnimationPlayer" unique_id=2014635923]
+libraries/Imported_Anim_Library = ExtResource("1_lb4a5")

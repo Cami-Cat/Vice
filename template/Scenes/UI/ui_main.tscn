@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://c76m4hlgodjv4"]
+[gd_scene format=3 uid="uid://c76m4hlgodjv4"]
 
 [ext_resource type="Script" uid="uid://b33l07rn455xp" path="res://Scripts/UI/Menu/ui_main.gd" id="1_v7lif"]
+[ext_resource type="PackedScene" uid="uid://clh5cdhe84w0j" path="res://Scenes/UI/cross_hair.tscn" id="2_pclsy"]
 
-[node name="UiMain" type="Control"]
+[node name="UiMain" type="Control" unique_id=1235538786]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,7 +13,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_v7lif")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1686176285]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,3 +21,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="CrossHair" parent="." unique_id=635694219 instance=ExtResource("2_pclsy")]
+layout_mode = 1

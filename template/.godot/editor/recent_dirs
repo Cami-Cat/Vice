@@ -1,6 +1,10 @@
-res://Scenes/Character/
-res://Scenes/World/
+res://Assets/Meshes/CharacterSkeletalMeshes/Female/
 res://
+res://Scenes/Character/
+res://Assets/Animations/
+res://Assets/Meshes/CharacterSkeletalMeshes/
+res://Scenes/UI/
+res://Scenes/World/
 res://Scenes/Components/
 res://Assets/Sprites/
 res://Assets/Audio/

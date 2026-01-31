@@ -58,7 +58,7 @@ func _possess_pawn(pawn : Pawn) -> bool:
 			return false
 			
 	possessed_pawn = pawn
-	possessed_pawn.mesh.visible = false
+	possessed_pawn.change_visibilty(false)
 	pawn._is_possessed = true
 	print("Successfully possessed pawn: %s" % [possessed_pawn])
 	_set_camera_target(possessed_pawn)

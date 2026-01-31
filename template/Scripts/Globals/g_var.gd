@@ -1,4 +1,24 @@
 extends Node
+const CHARACTER_FEMALE_02 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_02.fbx")
+const CHARACTER_FEMALE_03 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_03.fbx")
+const CHARACTER_FEMALE_04 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_04.fbx")
+const CHARACTER_FEMALE_05 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_05.fbx")
+const CHARACTER_FEMALE_06 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_06.fbx")
+const CHARACTER_FEMALE_07 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_07.fbx")
+
+
+
+
+
+
+const character_mesh_array = [
+	CHARACTER_FEMALE_02,
+	CHARACTER_FEMALE_03,
+	CHARACTER_FEMALE_04,
+	CHARACTER_FEMALE_05,
+	CHARACTER_FEMALE_06,
+	CHARACTER_FEMALE_07,
+]
 
 enum SUB_MANAGERS {
 	UI_MANAGER,
@@ -17,6 +37,13 @@ enum LAYERS {
 	UPPER,
 	## Holds UI 10
 	LOWER,
+}
+
+enum MASK{
+	## Mask is on player
+	MASK_ON,
+	## Mask is not on player
+	MASK_OFF,
 }
 
 static var sub_manager_dict : Dictionary = {
