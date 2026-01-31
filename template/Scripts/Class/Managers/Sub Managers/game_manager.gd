@@ -3,6 +3,10 @@ extends ManagerBase
 
 signal all_managers_ready()
 
+var game_rules : Dictionary[String, int] = {
+	"NumberOfHunters" : 5
+}
+
 var managers_to_load:Array[GVar.SUB_MANAGERS] = [GVar.SUB_MANAGERS.UI_MANAGER]
 var manager_dict:Dictionary[GVar.SUB_MANAGERS,ManagerBase]
 var managers_ready_state_dict:Dictionary
@@ -49,7 +53,19 @@ func _construct_player_controller() -> void:
 	var player_controller : PlayerController = PlayerController.new()
 	signal_bus.game_ready.connect(player_controller._game_start)
 	GVar.set("player_controller", player_controller)
+	player_controller.player_pawn_selected.connect(_set_up_non_player_pawns)
 	add_child(player_controller)
+
+func _set_up_non_player_pawns(player_pawn : Pawn) -> void:
+	var pawns : Array = get_tree().get_nodes_in_group("Pawn") as Array[Pawn]
+	pawns.erase(player_pawn)
+	if pawns.is_empty() : return
+	for i in range(game_rules["NumberOfHunters"]):
+		var selected_pawn = pawns.pick_random()
+		selected_pawn.pawn_ai.ai_type = pawn_AI.AI_TYPE.HUNTER
+		pawns.erase(selected_pawn)
+		print("Selected %s as a hunter" % [selected_pawn.name])
+	return
 
 func _game_ready():
 	pass
