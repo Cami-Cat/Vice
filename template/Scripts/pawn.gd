@@ -1,12 +1,86 @@
 class_name Pawn
 extends Node
 
-@onready var mesh: MeshInstance3D = $Mesh
 @export var _can_possess : bool = true
-var _is_possessed : bool = false
+@export var death_sound : AudioStream
+
+@onready var mesh: MeshInstance3D = $Mesh
+@onready var movement_component: MovementComponent = $MovementComponent
+
+var hunger:Hunger = null
+var mask_on:bool = true
+var is_dead:bool = false:
+	set(value):
+		is_dead = value
+		die()
+
+var _is_possessed : bool = false:
+	set(value):
+		_is_possessed = value
+		possessed()
 
 func can_possess() -> bool:
 	return true if _can_possess else false
 
 func can_unpossess() -> bool:
 	return true if _is_possessed else false
+
+func die():
+	if death_sound:
+		GSound.play_sound(&"SFX",death_sound)
+
+func possessed():
+	hunger = Hunger.new()
+	add_child(hunger)
+	var action_component:ActionComponent = ActionComponent.new()
+	movement_component.queue_free()
+	movement_component = MovementComponentPlayer.new()
+	add_child(movement_component)
+	add_child(action_component)
+	action_component.mask_action_pressed.connect(toggle_mask)
+
+func action():
+	var pawn:Pawn = GVar.player_context_raycast.hovered_pawn
+	if pawn:
+		if mask_on:
+			_talk()
+		else:
+			_attack(pawn)
+	else:
+		if mask_on:
+			_whistle()
+		else:
+			_scream()
+	pass
+
+func _attack(pawn:Pawn):
+	if pawn.is_dead:
+		_feed()
+	else:
+		pawn.is_dead = true
+
+func _feed():
+	pass
+
+func _whistle():
+	pass
+
+func _scream():
+	pass
+
+func _talk():
+	print("UWU")
+
+func toggle_mask():
+	var desired_mask:bool = !mask_on
+	# wrote shit for readability
+	if desired_mask == true:
+		if hunger.current_hunger > hunger.hunger_threshold_to_mask:
+			mask_on = desired_mask
+			print("I put the mask on")
+		else:
+			print("Me still hungy")
+	else:
+		mask_on = desired_mask
+		print("I take the mask off")
+	pass

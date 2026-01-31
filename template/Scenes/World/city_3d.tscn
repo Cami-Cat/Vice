@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://doij72a0ut3nk" path="res://Scenes/BaseScene/scene_base_3d.tscn" id="1_rpwb6"]
 [ext_resource type="PackedScene" uid="uid://7kiaigr1j55p" path="res://Scenes/Character/Pawn.tscn" id="2_fu27m"]
 
+[sub_resource type="Environment" id="Environment_fu27m"]
+background_mode = 2
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_fu27m"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fu27m"]
@@ -28,6 +31,9 @@ size = Vector3(2, 2, 2)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting and Sky" index="0" unique_id=756177678]
 transform = Transform3D(0.8415064, 0.35355338, -0.40849358, -0.12940955, 0.8660254, 0.4829629, 0.524519, -0.35355338, 0.7745191, 0, 6, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting and Sky" index="1" unique_id=1338288088]
+environment = SubResource("Environment_fu27m")
 
 [node name="Environment" type="Node3D" parent="." index="3" unique_id=1157403320]
 
@@ -87,3 +93,6 @@ shape = SubResource("ConvexPolygonShape3D_cl6jl")
 
 [node name="Pawn" parent="Pawns/NPCs" index="0" unique_id=840618511 instance=ExtResource("2_fu27m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.479617, 0)
+
+[node name="Pawn2" parent="Pawns/NPCs" index="1" unique_id=1564022671 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1229486, 0, 0)

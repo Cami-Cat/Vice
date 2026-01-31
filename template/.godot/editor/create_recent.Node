@@ -1,6 +1,7 @@
+res://Scripts/context_raycast3d.gd
+WorldEnvironment
 Node3D
 MeshInstance3D
-WorldEnvironment
 DirectionalLight3D
 Camera3D
 OmniLight3D

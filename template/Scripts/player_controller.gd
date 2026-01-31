@@ -26,6 +26,8 @@ func _construct_camera_rig() -> void:
 	
 	#camera_target.add_child(player_camera)
 	GVar.active_scene.add_child(player_camera)
+	var context_raycast:ContextRayCast3D = ContextRayCast3D.new()
+	player_camera.add_child(context_raycast)
 	return
 	
 func _game_start() -> void:

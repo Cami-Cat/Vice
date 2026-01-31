@@ -81,4 +81,10 @@ var player_controller:PlayerController:
 	set(value):
 		player_controller = value
 
+var player_context_raycast:ContextRayCast3D:
+	get:
+		return player_context_raycast
+	set(value):
+		player_context_raycast = value
+
 var gravity : float = 9.0
