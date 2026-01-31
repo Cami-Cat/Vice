@@ -1,7 +1,16 @@
 [gd_scene format=3 uid="uid://c76m4hlgodjv4"]
 
 [ext_resource type="Script" uid="uid://b33l07rn455xp" path="res://Scripts/UI/Menu/ui_main.gd" id="1_v7lif"]
+[ext_resource type="Material" uid="uid://dybbcfavpssln" path="res://Scripts/Resources/Materials/blurvignette_material.tres" id="2_b2hoh"]
+[ext_resource type="Texture2D" uid="uid://bnon0ttye7bxu" path="res://Assets/Sprites/t_mask_overlay.png" id="2_h3s1k"]
 [ext_resource type="PackedScene" uid="uid://clh5cdhe84w0j" path="res://Scenes/UI/cross_hair.tscn" id="2_pclsy"]
+[ext_resource type="Shader" uid="uid://qxngl7ju83fj" path="res://Scripts/Resources/Materials/tilt_transparent_material.gdshader" id="2_rad5t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ch3em"]
+shader = ExtResource("2_rad5t")
+shader_parameter/tilt_amount = Vector2(1, 0)
+shader_parameter/direction = Vector2(0, 0)
+shader_parameter/alpha = 0.0
 
 [node name="UiMain" type="Control" unique_id=1235538786]
 layout_mode = 3
@@ -12,6 +21,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_v7lif")
+
+[node name="MaskTexture" type="TextureRect" parent="." unique_id=2110900702]
+material = SubResource("ShaderMaterial_ch3em")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(960, 540)
+texture = ExtResource("2_h3s1k")
+
+[node name="BlurEffect" type="ColorRect" parent="." unique_id=1499942354]
+material = ExtResource("2_b2hoh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Control" type="Control" parent="." unique_id=1686176285]
 layout_mode = 1

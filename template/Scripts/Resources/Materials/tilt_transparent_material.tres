@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dsrv7wr4i5y5c"]
+
+[ext_resource type="Shader" uid="uid://qxngl7ju83fj" path="res://Scripts/Resources/Materials/tilt_transparent_material.gdshader" id="1_kpud4"]
+
+[resource]
+shader = ExtResource("1_kpud4")
+shader_parameter/tilt_amount = Vector2(0.5, 0.5)

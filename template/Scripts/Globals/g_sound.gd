@@ -11,7 +11,7 @@ func play_sound(_bus : StringName, _sound : AudioStream, ..._args : Array) -> vo
 	add_child(new_audio_player)
 	new_audio_player.stream = _sound
 	new_audio_player.bus = _bus
-	new_audio_player.pitch_scale = randf_range(new_audio_player.pitch_scale-0.5,new_audio_player.pitch_scale)
+	new_audio_player.pitch_scale = randf_range(new_audio_player.pitch_scale-0.2,new_audio_player.pitch_scale+0.2)
 	new_audio_player.play(0.0)
 
 func play_sound_main_camera(sound:AudioStreamMP3,bus):

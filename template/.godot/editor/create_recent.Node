@@ -1,3 +1,9 @@
+MeshInstance3D
+StaticBody3D
+CollisionShape3D
+Camera3D
+TextureRect
+ColorRect
 AudioStreamPlayer
 Panel
 Node3D
@@ -6,9 +12,3 @@ NavigationObstacle3D
 NavigationRegion3D
 NavigationAgent3D
 WorldEnvironment
-MeshInstance3D
-Skeleton3D
-TextureRect
-WorldEnvironment
-DirectionalLight3D
-Camera3D

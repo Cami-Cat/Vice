@@ -6,14 +6,23 @@ const CHARACTER_FEMALE_05 = preload("res://Assets/Meshes/CharacterSkeletalMeshes
 const CHARACTER_FEMALE_06 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_06.fbx")
 const CHARACTER_FEMALE_07 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_07.fbx")
 
+const CHARACTER_02 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_02.fbx")
+const CHARACTER_03 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_03.fbx")
+const CHARACTER_04 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_04.fbx")
 
-const character_mesh_array = [
+const character_mesh_array_f = [
 	CHARACTER_FEMALE_02,
 	CHARACTER_FEMALE_03,
 	CHARACTER_FEMALE_04,
 	CHARACTER_FEMALE_05,
 	CHARACTER_FEMALE_06,
 	CHARACTER_FEMALE_07,
+]
+
+const character_mesh_array_m = [
+	CHARACTER_02,
+	CHARACTER_03,
+	CHARACTER_04,
 ]
 
 enum SUB_MANAGERS {
