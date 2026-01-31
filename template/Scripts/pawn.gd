@@ -1,11 +1,15 @@
 class_name Pawn
 extends Node
 
+signal is_possessed()
+signal is_unpossessed()
+
 @export var _can_possess : bool = true
 @export var death_sound : AudioStream
 
 @onready var mesh: MeshInstance3D = $Mesh
 @onready var movement_component: MovementComponent = $MovementComponent
+@onready var pawn_ai: pawn_AI = $PawnAI
 
 var hunger:Hunger = null
 var mask_on:bool = true
@@ -38,6 +42,7 @@ func possessed():
 	add_child(movement_component)
 	add_child(action_component)
 	action_component.mask_action_pressed.connect(toggle_mask)
+	pawn_ai._pause_ai()
 
 func action():
 	var pawn:Pawn = GVar.player_context_raycast.hovered_pawn

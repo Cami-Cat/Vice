@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bjwvbkseg6c87" path="res://Scripts/pawn.gd" id="1_wnnq1"]
 [ext_resource type="Script" uid="uid://cymoi565euley" path="res://Scenes/Character/movement_component.gd" id="2_7i2vd"]
 [ext_resource type="Script" uid="uid://ccoqj35beiilx" path="res://Scenes/Character/camera_target_component.gd" id="2_dvtaj"]
+[ext_resource type="Script" uid="uid://ca7drdvqb2f7k" path="res://Scenes/Character/pawn_ai.gd" id="4_dvtaj"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_7i2vd"]
 
@@ -27,3 +28,18 @@ script = ExtResource("2_7i2vd")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=107906795]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96328306, 0)
 shape = SubResource("ConvexPolygonShape3D_g5mk7")
+
+[node name="PawnAI" type="Node3D" parent="." unique_id=1061600076]
+script = ExtResource("4_dvtaj")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="PawnAI" unique_id=1179384991]
+debug_enabled = true
+debug_path_custom_color = Color(1, 0, 1, 1)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="PawnAI" unique_id=117525701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.86368835, 0)
+radius = 1.5
+height = 2.0
+affect_navigation_mesh = true
+carve_navigation_mesh = true
+use_3d_avoidance = true
