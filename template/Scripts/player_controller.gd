@@ -1,6 +1,8 @@
 class_name PlayerController
 extends Node
 
+signal player_pawn_selected(pawn : Pawn)
+
 var player_index : int = 0
 var possessed_pawn : Pawn = null
 var player_camera : PlayerCamera3D = PlayerCamera3D.new()
@@ -66,7 +68,7 @@ func _possess_pawn(pawn : Pawn) -> bool:
 	_set_camera_target(possessed_pawn)
 	
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	
+	player_pawn_selected.emit(possessed_pawn)
 	return true
 	
 func _unpossess_pawn(pawn : Pawn) -> bool:

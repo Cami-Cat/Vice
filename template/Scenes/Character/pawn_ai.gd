@@ -14,7 +14,7 @@ static var world_bounds : float = 100.0
 
 var should_navigate : bool = true
 var just_idled : bool = false
-var alerted : bool = true
+var alerted : bool = false
 var is_shooting : bool = false
 
 var player_raycast : RayCast3D
@@ -58,10 +58,11 @@ func _construct_raycast() -> void:
 	add_child(player_raycast)
 	return
 
-func _can_see_player_pawn() -> bool:
+func _can_see_player_pawn() -> bool: 
 	var player_pawn : Pawn = GVar.player_controller.possessed_pawn
-	var direction = (player_pawn.global_position - pawn.global_position).normalized() 
+	var direction = (player_pawn.global_position - pawn.global_position).normalized()
 	player_raycast.target_position = direction * 20.0
+	player_raycast.force_raycast_update()
 	if player_raycast.is_colliding():
 		if player_raycast.get_collider() != player_pawn: return false
 		return true
@@ -81,7 +82,10 @@ func _do_behaviour() -> void:
 		BEHAVIOUR.IDLE:
 			_idle()
 			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.IDLE)
-		BEHAVIOUR.WALK | BEHAVIOUR.HUNTING :
+		BEHAVIOUR.WALK:
+			_set_target_position()
+			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
+		BEHAVIOUR.HUNTING:
 			_set_target_position()
 			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
 		BEHAVIOUR.FLEE:
@@ -126,7 +130,6 @@ func _go_to_target_position() -> void:
 	var target_position = navigation_agent_3d.get_next_path_position()
 	var local_position = target_position - global_position
 	var direction = (local_position.normalized() * ai_walk_speed)
-	
 	
 	navigation_agent_3d.set_velocity(direction)
 	return
@@ -175,6 +178,6 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 		return
 	pawn.velocity = pawn.velocity.move_toward(safe_velocity, 0.75)
 	if !(pawn.global_position - safe_velocity) == pawn.global_position :
-		pawn.look_at(pawn.global_position - safe_velocity)
+		pawn.character_model.look_at(pawn.global_position - safe_velocity)
 	pawn.move_and_slide()
 	return
