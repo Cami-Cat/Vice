@@ -1,5 +1,5 @@
 class_name Pawn
-extends Node
+extends CharacterBody3D
 
 signal is_possessed()
 signal is_unpossessed()
@@ -95,3 +95,7 @@ func toggle_mask():
 		GVar.signal_bus.mask_changed.emit(GVar.MASK.MASK_OFF)
 		print("I take the mask off")
 	pass
+
+func change_visibilty(to : bool = false) -> void:
+	character_model.visible = to
+	return
