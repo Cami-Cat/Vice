@@ -1,7 +1,6 @@
 Node3D
 AnimationPlayer
 NavigationObstacle3D
-Node3D
 NavigationRegion3D
 NavigationAgent3D
 WorldEnvironment
@@ -12,9 +11,3 @@ WorldEnvironment
 DirectionalLight3D
 Camera3D
 OmniLight3D
-CollisionShape3D
-CharacterBody3D
-Camera2D
-Node
-Node2D
-Timer

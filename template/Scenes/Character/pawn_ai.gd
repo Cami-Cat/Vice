@@ -80,10 +80,13 @@ func _do_behaviour() -> void:
 	match current_behaviour:
 		BEHAVIOUR.IDLE:
 			_idle()
-		BEHAVIOUR.WALK:
+			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.IDLE)
+		BEHAVIOUR.WALK | BEHAVIOUR.HUNTING :
 			_set_target_position()
+			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
 		BEHAVIOUR.FLEE:
 			idle_timeout.emit()
+			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.RUN)
 	return
 
 func _idle() -> void:
@@ -123,6 +126,7 @@ func _go_to_target_position() -> void:
 	var target_position = navigation_agent_3d.get_next_path_position()
 	var local_position = target_position - global_position
 	var direction = (local_position.normalized() * ai_walk_speed)
+	
 	
 	navigation_agent_3d.set_velocity(direction)
 	return
@@ -170,5 +174,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 		pawn.velocity = Vector3.ZERO
 		return
 	pawn.velocity = pawn.velocity.move_toward(safe_velocity, 0.75)
+	if !(pawn.global_position - safe_velocity) == pawn.global_position :
+		pawn.look_at(pawn.global_position - safe_velocity)
 	pawn.move_and_slide()
 	return
