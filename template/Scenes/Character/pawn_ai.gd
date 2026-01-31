@@ -23,13 +23,13 @@ func _init() -> void:
 	return
 
 func choose_next_behaviour() -> void:
+	if pawn.is_dead : return
 	current_behaviour = BEHAVIOUR.IDLE
 	if !just_idled:
 		current_behaviour = randi_range(0, 1) as BEHAVIOUR
 	else:
 		just_idled = false
 		current_behaviour = BEHAVIOUR.WALK
-	print("%s Choosing Pawn behaviour: %s" % [pawn.name, BEHAVIOUR.keys()[int(current_behaviour)]])
 	behaviour_chosen.emit()
 	return
 
@@ -74,10 +74,10 @@ func _get_random_position_in_world() -> Vector3:
 
 func _set_target_position() -> void:
 	navigation_agent_3d.set_target_position(_get_random_position_in_world())
-	print("%s: Target position selected: %s" % [pawn.name, navigation_agent_3d.target_position])
 	return
 
 func _go_to_target_position() -> void:
+	if pawn.is_dead : return
 	var target_position = navigation_agent_3d.get_next_path_position()
 	var local_position = target_position - global_position
 	var direction = (local_position.normalized() * ai_walk_speed)
@@ -86,12 +86,16 @@ func _go_to_target_position() -> void:
 	return
 
 func _physics_process(delta: float) -> void:
+	if pawn.is_dead : 
+		pawn.velocity = Vector3.ZERO
+		return
 	if !should_navigate : return
 	if current_behaviour == BEHAVIOUR.WALK || current_behaviour == BEHAVIOUR.FLEE:
 		_go_to_target_position()
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	if pawn.is_dead : return
 	if !should_navigate : return
 	pawn.velocity = pawn.velocity.move_toward(safe_velocity, 0.75)
 	pawn.move_and_slide()
