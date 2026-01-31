@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b5kh0gh84l8w3"]
+
+[ext_resource type="PackedScene" uid="uid://qvlujkb42dh6" path="res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_02.fbx" id="1_ke5jg"]
+[ext_resource type="Script" uid="uid://c3hjrgqc81ja8" path="res://character_model.gd" id="2_m6dkb"]
+[ext_resource type="PackedScene" uid="uid://dgfttfst6us1k" path="res://Scenes/Character/general_anim_player.tscn" id="2_utvr5"]
+
+[node name="CharacterModel" unique_id=1992272678 instance=ExtResource("1_ke5jg")]
+script = ExtResource("2_m6dkb")
+
+[node name="GeneralAnimPlayer" parent="." index="1" unique_id=2014635923 instance=ExtResource("2_utvr5")]

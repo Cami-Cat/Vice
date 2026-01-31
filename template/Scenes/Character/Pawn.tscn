@@ -18,12 +18,8 @@ points = PackedVector3Array(-0.12520654, -0.532801, -0.4805069, 0.022783129, 0.4
 collision_layer = 3
 script = ExtResource("1_wnnq1")
 
-[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1716564980]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96328306, 0)
-mesh = SubResource("CapsuleMesh_7i2vd")
-
 [node name="CameraTargetComponent" type="Node3D" parent="." unique_id=782060190 groups=["CameraTarget"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6221888, -0.003149271)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8913078, -0.003149271)
 script = ExtResource("2_dvtaj")
 
 [node name="MovementComponent" type="Node3D" parent="." unique_id=285235814]
