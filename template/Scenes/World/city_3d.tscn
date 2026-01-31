@@ -637,5 +637,110 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1229486, 0, -31.959785)
 [node name="Pawn3" parent="Pawns/NPCs" index="2" unique_id=716919467 instance=ExtResource("2_fu27m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.48293, 0, 0)
 
-[node name="Pawn4" parent="Pawns/NPCs" index="3" unique_id=419615921 instance=ExtResource("2_fu27m")]
+[node name="Pawn5" parent="Pawns/NPCs" index="3" unique_id=1552275151 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.558643, 0, -3.6850355)
+
+[node name="Pawn6" parent="Pawns/NPCs" index="4" unique_id=912834323 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.558643, 0, 2.3176086)
+
+[node name="Pawn7" parent="Pawns/NPCs" index="5" unique_id=1143017700 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.240414, 0, -7.8997517)
+
+[node name="Pawn8" parent="Pawns/NPCs" index="6" unique_id=1549006573 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.45774, 0, 0)
+
+[node name="Pawn9" parent="Pawns/NPCs" index="7" unique_id=1089327737 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.533455, 0, -3.6850355)
+
+[node name="Pawn10" parent="Pawns/NPCs" index="8" unique_id=900502717 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.533455, 0, 2.3176086)
+
+[node name="Pawn11" parent="Pawns/NPCs" index="9" unique_id=623452257 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.215225, 0, -7.8997517)
+
+[node name="Pawn12" parent="Pawns/NPCs" index="10" unique_id=586274818 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68.08568, 0, 0)
+
+[node name="Pawn13" parent="Pawns/NPCs" index="11" unique_id=821942520 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.16139, 0, -3.6850355)
+
+[node name="Pawn14" parent="Pawns/NPCs" index="12" unique_id=2127298758 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 71.16139, 0, 2.3176086)
+
+[node name="Pawn15" parent="Pawns/NPCs" index="13" unique_id=1625988271 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 76.84316, 0, -7.8997517)
+
+[node name="Pawn16" parent="Pawns/NPCs" index="14" unique_id=503603521 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.563599, 0, 0)
+
+[node name="Pawn17" parent="Pawns/NPCs" index="15" unique_id=890835918 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.639313, 0, -3.6850355)
+
+[node name="Pawn18" parent="Pawns/NPCs" index="16" unique_id=1927680443 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.639313, 0, 2.3176086)
+
+[node name="Pawn19" parent="Pawns/NPCs" index="17" unique_id=887496434 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.321083, 0, -7.8997517)
+
+[node name="Pawn20" parent="Pawns/NPCs" index="18" unique_id=147235566 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.716476, 0, 0)
+
+[node name="Pawn21" parent="Pawns/NPCs" index="19" unique_id=1300908161 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.640762, 0, -3.6850355)
+
+[node name="Pawn22" parent="Pawns/NPCs" index="20" unique_id=69499744 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.640762, 0, 2.3176086)
+
+[node name="Pawn23" parent="Pawns/NPCs" index="21" unique_id=356660350 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.958992, 0, -7.8997517)
+
+[node name="Pawn24" parent="Pawns/NPCs" index="22" unique_id=273518081 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.0563, 0, 0)
+
+[node name="Pawn25" parent="Pawns/NPCs" index="23" unique_id=355297355 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.980587, 0, -3.6850355)
+
+[node name="Pawn26" parent="Pawns/NPCs" index="24" unique_id=1484371994 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.980587, 0, 2.3176086)
+
+[node name="Pawn27" parent="Pawns/NPCs" index="25" unique_id=874183839 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.298817, 0, -7.8997517)
+
+[node name="Pawn28" parent="Pawns/NPCs" index="26" unique_id=1287596271 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.766212, 0, 0)
+
+[node name="Pawn29" parent="Pawns/NPCs" index="27" unique_id=1180489484 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6905, 0, -3.6850355)
+
+[node name="Pawn30" parent="Pawns/NPCs" index="28" unique_id=1695772190 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.6905, 0, 2.3176086)
+
+[node name="Pawn31" parent="Pawns/NPCs" index="29" unique_id=815991833 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.008728, 0, -7.8997517)
+
+[node name="Pawn32" parent="Pawns/NPCs" index="30" unique_id=915664873 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -65.75406, 0, 0)
+
+[node name="Pawn33" parent="Pawns/NPCs" index="31" unique_id=1628620936 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.678345, 0, -3.6850355)
+
+[node name="Pawn34" parent="Pawns/NPCs" index="32" unique_id=2005133877 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62.678345, 0, 2.3176086)
+
+[node name="Pawn35" parent="Pawns/NPCs" index="33" unique_id=532790387 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -56.996574, 0, -7.8997517)
+
+[node name="Pawn36" parent="Pawns/NPCs" index="34" unique_id=1161258187 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84.85131, 0, 0)
+
+[node name="Pawn37" parent="Pawns/NPCs" index="35" unique_id=441555565 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.7756, 0, -3.6850355)
+
+[node name="Pawn38" parent="Pawns/NPCs" index="36" unique_id=86233661 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.7756, 0, 2.3176086)
+
+[node name="Pawn39" parent="Pawns/NPCs" index="37" unique_id=1092021770 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.09383, 0, -7.8997517)
+
+[node name="Pawn4" parent="Pawns/NPCs" index="38" unique_id=419615921 instance=ExtResource("2_fu27m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5139356, 0, 17.205574)
