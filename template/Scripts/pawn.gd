@@ -1,6 +1,7 @@
 class_name Pawn
 extends Node
 
+@onready var mesh: MeshInstance3D = $Mesh
 @export var _can_possess : bool = true
 var _is_possessed : bool = false
 

@@ -1,18 +1,18 @@
 class_name PlayerController
 extends Node
 
-signal _player_controller_ready()
-signal _player_controller_init_error()
-
 var player_index : int = 0
 var possessed_pawn : Pawn = null
-var input_manager : InputManager = InputManager.new()
 var player_camera : PlayerCamera3D = PlayerCamera3D.new()
 
 func _init() -> void:
 	name = "PlayerController"
-	add_child(input_manager)
 	_construct_camera_rig()
+	return
+
+func _construct_input_handler() -> void:
+	var input_manager = InputManager.new(self)
+	add_child(input_manager)
 	return
 
 func _construct_camera_rig() -> void:
@@ -26,12 +26,6 @@ func _construct_camera_rig() -> void:
 	
 	#camera_target.add_child(player_camera)
 	GVar.active_scene.add_child(player_camera)
-	return
-
-func _connect_signals() -> void:
-	return
-
-func _ready() -> void:
 	return
 	
 func _game_start() -> void:
@@ -55,11 +49,19 @@ func _possess_pawn(pawn : Pawn) -> bool:
 		print("Cannot possess pawn: %s" % [pawn])
 		return false
 	
-	# Do some other camera logic here.
+	# Do some other camera logic here. 
+	if possessed_pawn != null:
+		if !_unpossess_pawn(possessed_pawn):
+			print("Cannot unpossess currently possessed pawn: %s" % [possessed_pawn])
+			return false
+			
 	possessed_pawn = pawn
+	possessed_pawn.mesh.visible = false
 	pawn._is_possessed = true
 	print("Successfully possessed pawn: %s" % [possessed_pawn])
 	_set_camera_target(possessed_pawn)
+	
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
 	return true
 	
@@ -72,15 +74,26 @@ func _unpossess_pawn(pawn : Pawn) -> bool:
 	
 	return true
 
-func _set_camera_target(to : Variant) -> void:	
+func _set_camera_target(to : Variant) -> void:
+	var _type : Variant
 	if !is_instance_of(to, Pawn) || !typeof(to) != TYPE_VECTOR3:
 		print("Cannot set target to: [%s], it must be of type Pawn or Vector3" % [to])
 		return
 	if is_instance_of(to, Pawn):
-		for child : Node in to.get_children():
-			if child.is_in_group("CameraTarget"):
-				to = child.position
+		for component : Node in to.get_children():
+			if !component.is_in_group("CameraTarget") : continue
+			to = component
+			break
 	
-	var tween = GTwn._tween_property(player_camera, "position", to, 0.5, Tween.TransitionType.TRANS_SINE)
-	await GTwn.kill_tween(tween)
+	player_camera.set_target(to)
+	
+	if is_instance_of(to, Node3D):
+		# This ensures that the position is constantly updated.
+		player_camera.get_parent().remove_child(player_camera)
+		to.add_child(player_camera)
 	return
+
+func _remove_camera_from_parent() -> bool:
+	player_camera.get_parent().remove_child(player_camera)
+	if player_camera.get_parent() == null : return true
+	return false

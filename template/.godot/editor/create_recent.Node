@@ -1,5 +1,7 @@
 Node3D
 MeshInstance3D
+WorldEnvironment
+DirectionalLight3D
 Camera3D
 OmniLight3D
 CollisionShape3D
@@ -10,5 +12,3 @@ Node2D
 Timer
 SubViewport
 SubViewportContainer
-Container
-TextureRect

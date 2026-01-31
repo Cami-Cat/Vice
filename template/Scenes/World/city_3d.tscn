@@ -5,15 +5,85 @@
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_fu27m"]
 
-[node name="scene_base_3d" unique_id=686478997 instance=ExtResource("1_rpwb6")]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fu27m"]
+points = PackedVector3Array(-100, 0, -100, -100, 0, 100, 100, 0, -100, 100, 0, 100)
 
-[node name="Floor" type="MeshInstance3D" parent="World Origin" parent_id_path=PackedInt32Array(142773117) index="0" unique_id=478081192]
+[sub_resource type="BoxMesh" id="BoxMesh_fu27m"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cl6jl"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jnfn7"]
+size = Vector3(4, 4, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yln8x"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4fbxc"]
+size = Vector3(2, 2, 2)
+
+[node name="City" unique_id=686478997 instance=ExtResource("1_rpwb6")]
+
+[node name="Lighting and Sky" type="Node3D" parent="." index="2" unique_id=1620659525]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting and Sky" index="0" unique_id=756177678]
+transform = Transform3D(0.8415064, 0.35355338, -0.40849358, -0.12940955, 0.8660254, 0.4829629, 0.524519, -0.35355338, 0.7745191, 0, 6, 0)
+
+[node name="Environment" type="Node3D" parent="." index="3" unique_id=1157403320]
+
+[node name="Floor" type="MeshInstance3D" parent="Environment" index="0" unique_id=478081192]
 transform = Transform3D(127.88001, 0, 0, 0, 1, 0, 0, 0, 127.88001, 0, 0, 0)
 mesh = SubResource("PlaneMesh_fu27m")
 skeleton = NodePath("../..")
 
-[node name="Pawn" parent="." index="2" unique_id=840618511 instance=ExtResource("2_fu27m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47961712, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Floor" index="0" unique_id=57334116]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." index="3" unique_id=2022802301]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3700628, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Floor/StaticBody3D" index="0" unique_id=184227135]
+shape = SubResource("ConvexPolygonShape3D_fu27m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment" index="1" unique_id=2021737020]
+transform = Transform3D(0.7496954, 0, 0.66178304, 0, 1, 0, -0.66178304, 0, 0.7496954, -4.584034, 0.5133333, -7.4971886)
+mesh = SubResource("BoxMesh_fu27m")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D" index="0" unique_id=1638821560]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D/StaticBody3D" index="0" unique_id=1438437372]
+shape = SubResource("ConvexPolygonShape3D_cl6jl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Environment" index="2" unique_id=399928114]
+transform = Transform3D(0.86358917, 0, -0.50419605, 0, 1, 0, 0.50419605, 0, 0.86358917, 6.0666018, 1.9659245, -7.4971886)
+mesh = SubResource("BoxMesh_jnfn7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D2" index="0" unique_id=769623811]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D2/StaticBody3D" index="0" unique_id=980126836]
+shape = SubResource("ConvexPolygonShape3D_cl6jl")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Environment" index="3" unique_id=155891944]
+transform = Transform3D(0.9604348, 0, 0.27850497, 0, 1, 0, -0.27850497, 0, 0.9604348, 3.0141466, 1.4122014, -7.4971886)
+mesh = SubResource("BoxMesh_yln8x")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D3" index="0" unique_id=761823609]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D3/StaticBody3D" index="0" unique_id=742458853]
+shape = SubResource("ConvexPolygonShape3D_cl6jl")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Environment" index="4" unique_id=429483897]
+transform = Transform3D(0.91610396, 0, -0.40094078, 0, 1, 0, 0.40094078, 0, 0.91610396, -3.1359735, 0.9085951, -7.8018165)
+mesh = SubResource("BoxMesh_4fbxc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/MeshInstance3D4" index="0" unique_id=976853809]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/MeshInstance3D4/StaticBody3D" index="0" unique_id=793153442]
+shape = SubResource("ConvexPolygonShape3D_cl6jl")
+
+[node name="Pawns" type="Node3D" parent="." index="4" unique_id=869799468]
+
+[node name="Player Controlled" type="Node3D" parent="Pawns" index="0" unique_id=449430405]
+
+[node name="Hunters" type="Node3D" parent="Pawns" index="1" unique_id=515850470]
+
+[node name="NPCs" type="Node3D" parent="Pawns" index="2" unique_id=568707460]
+
+[node name="Pawn" parent="Pawns/NPCs" index="0" unique_id=840618511 instance=ExtResource("2_fu27m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.479617, 0)

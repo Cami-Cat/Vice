@@ -32,6 +32,7 @@ const LAYER_DICT:Dictionary[LAYERS,int] = {
 	LAYERS.UPPER:99,
 	LAYERS.LOWER:10,
 }
+
 var game_core:GameCore:
 	get:
 		return game_core
@@ -79,3 +80,5 @@ var player_controller:PlayerController:
 		return player_controller
 	set(value):
 		player_controller = value
+
+var gravity : float = 9.0
