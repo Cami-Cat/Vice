@@ -30,6 +30,7 @@ func can_unpossess() -> bool:
 	return true if _is_possessed else false
 
 func die():
+	print("Gaah I died!")
 	if death_sound:
 		GSound.play_sound(&"SFX",death_sound)
 
@@ -42,7 +43,7 @@ func possessed():
 	add_child(movement_component)
 	add_child(action_component)
 	action_component.mask_action_pressed.connect(toggle_mask)
-	pawn_ai._pause_ai()
+	pawn_ai.queue_free()
 
 func action():
 	var pawn:Pawn = GVar.player_context_raycast.hovered_pawn

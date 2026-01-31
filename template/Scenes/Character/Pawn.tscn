@@ -35,6 +35,7 @@ shape = SubResource("ConvexPolygonShape3D_g5mk7")
 
 [node name="PawnAI" type="Node3D" parent="." unique_id=1061600076]
 script = ExtResource("4_dvtaj")
+ai_type = 1
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="PawnAI" unique_id=1179384991]
 path_height_offset = 0.45
