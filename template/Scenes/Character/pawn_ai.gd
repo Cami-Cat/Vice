@@ -3,6 +3,7 @@ extends Node3D
 
 signal behaviour_chosen()
 signal idle_timeout()
+signal shot()
 
 static var world_bounds : float = 100.0
 
@@ -148,7 +149,8 @@ func _aim_at_player() -> void:
 		is_shooting = true
 		await _shoot_at_player()
 	else:
-		current_behaviour == BEHAVIOUR.HUNTING
+		if is_shooting : await shot
+		current_behaviour = BEHAVIOUR.HUNTING
 		should_navigate = true
 		is_shooting = false
 
@@ -160,6 +162,7 @@ func _shoot_at_player() -> void:
 		# Shooting cooldown
 		await get_tree().create_timer(randf_range(1.5, 3.5)).timeout
 		is_shooting = false
+	shot.emit()
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if pawn.is_dead : return
