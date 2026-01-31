@@ -59,6 +59,7 @@ func _construct_player_controller() -> void:
 func _set_up_non_player_pawns(player_pawn : Pawn) -> void:
 	var pawns : Array = get_tree().get_nodes_in_group("Pawn") as Array[Pawn]
 	pawns.erase(player_pawn)
+	if pawns.is_empty() : return
 	for i in range(game_rules["NumberOfHunters"]):
 		var selected_pawn = pawns.pick_random()
 		selected_pawn.pawn_ai.ai_type = pawn_AI.AI_TYPE.HUNTER
