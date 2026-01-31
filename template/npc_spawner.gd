@@ -2,7 +2,6 @@ class_name NPCSpawner
 extends Node3D
 
 signal spawn_complete()
-signal pawn_died()
 
 const PAWN_SCENE = preload("res://Scenes/Character/Pawn.tscn")
 
@@ -30,7 +29,7 @@ func _start_spawning() -> void:
 
 func _spawn_npc() -> void:
 	if self.get_children().size() > spawn_limit :
-		await pawn_died
+		await GVar.signal_bus.pawn_died
 	var pawn_type : pawn_AI.AI_TYPE = pawn_AI.AI_TYPE.CITIZEN
 	var random_number = randf_range(0.0, 1.0)
 	if random_number < hunter_chance:
