@@ -13,7 +13,7 @@ static var world_bounds : float = 100.0
 
 var should_navigate : bool = true
 var just_idled : bool = false
-var alerted : bool = false
+var alerted : bool = true
 var is_shooting : bool = false
 
 var player_raycast : RayCast3D
@@ -39,19 +39,14 @@ func choose_next_behaviour() -> void:
 				current_behaviour = randi_range(0, 1) as BEHAVIOUR
 			else:
 				just_idled = false
-				if alerted:
-					current_behaviour = BEHAVIOUR.FLEE
-				else:
-					current_behaviour = BEHAVIOUR.WALK
+				if alerted : current_behaviour = BEHAVIOUR.FLEE
+				else : current_behaviour = BEHAVIOUR.WALK
 		AI_TYPE.HUNTER:
-			if !just_idled:
-				current_behaviour = randi_range(0, 1) as BEHAVIOUR
+			if !just_idled : current_behaviour = randi_range(0, 1) as BEHAVIOUR
 			else:
 				just_idled = false
-				if alerted:
-					current_behaviour = BEHAVIOUR.HUNTING
-				else:
-					current_behaviour = BEHAVIOUR.WALK
+				if alerted : current_behaviour = BEHAVIOUR.HUNTING
+				else : current_behaviour = BEHAVIOUR.WALK
 	
 	behaviour_chosen.emit()
 	return
