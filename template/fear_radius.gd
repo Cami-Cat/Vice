@@ -13,6 +13,7 @@ func _construct_area() -> void:
 	area.add_child(shape)
 	shape.shape = SphereShape3D.new() as SphereShape3D
 	shape.shape.radius = 10.0
+	area.collision_mask = 2
 	area.body_entered.connect(_fear)
 	area.body_exited.connect(_unfear)
 	return
