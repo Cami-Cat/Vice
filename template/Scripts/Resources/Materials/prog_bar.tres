@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bt51rfnmnd7yh"]
+
+[ext_resource type="Shader" uid="uid://bdgsqu2mprgmw" path="res://Scripts/Resources/Materials/prog_bar.gdshader" id="1_rbq0t"]
+[ext_resource type="Texture2D" uid="uid://ce7po7i7uykc4" path="res://Assets/Sprites/image.png" id="2_gy5pn"]
+
+[resource]
+shader = ExtResource("1_rbq0t")
+shader_parameter/_texture = ExtResource("2_gy5pn")
+shader_parameter/progress = 1.0
