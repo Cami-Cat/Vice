@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ddffs0bwvdpnt"]
+
+[ext_resource type="Script" uid="uid://f8oygt02fivj" path="res://fear_radius.gd" id="1_sp4yr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0mpux"]
+radius = 10.0
+
+[node name="Fear Radius" type="Node3D" unique_id=3734207]
+script = ExtResource("1_sp4yr")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1575361312]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=885835504]
+shape = SubResource("SphereShape3D_0mpux")
+debug_color = Color(0.99866766, 0, 0.14787182, 0.41960785)

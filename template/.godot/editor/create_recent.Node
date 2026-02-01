@@ -1,6 +1,7 @@
+CollisionShape3D
+Area3D
 MeshInstance3D
 StaticBody3D
-CollisionShape3D
 Camera3D
 TextureRect
 ColorRect
@@ -11,4 +12,3 @@ AnimationPlayer
 NavigationObstacle3D
 NavigationRegion3D
 NavigationAgent3D
-WorldEnvironment

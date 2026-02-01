@@ -7,7 +7,10 @@ signal shot()
 
 static var world_bounds : float = 100.0
 
-@export var ai_walk_speed : float = 2.0
+const AI_WALK_SPEED : float = 2.0
+const AI_RUN_SPEED : float = 4.0
+
+@export var ai_speed : float = 2.0
 @export var max_idle_time : float = 15.0
 @onready var navigation_agent_3d: NavigationAgent3D = $NavigationAgent3D
 @onready var pawn : Pawn = self.get_parent()
@@ -38,12 +41,15 @@ func choose_next_behaviour() -> void:
 		AI_TYPE.CITIZEN:
 			if !just_idled:
 				current_behaviour = randi_range(0, 1) as BEHAVIOUR
+				if alerted : current_behaviour = BEHAVIOUR.FLEE
 			else:
 				just_idled = false
 				if alerted : current_behaviour = BEHAVIOUR.FLEE
 				else : current_behaviour = BEHAVIOUR.WALK
 		AI_TYPE.HUNTER:
-			if !just_idled : current_behaviour = randi_range(0, 1) as BEHAVIOUR
+			if !just_idled : 
+				current_behaviour = randi_range(0, 1) as BEHAVIOUR
+				if alerted : current_behaviour = BEHAVIOUR.HUNTING
 			else:
 				just_idled = false
 				if alerted : current_behaviour = BEHAVIOUR.HUNTING
@@ -62,9 +68,11 @@ func _can_see_player_pawn() -> bool:
 	var player_pawn : Pawn = GVar.player_controller.possessed_pawn
 	var direction = (player_pawn.global_position - pawn.global_position).normalized()
 	player_raycast.target_position = direction * 20.0
-	player_raycast.force_raycast_update()
+	player_raycast.collision_mask = 2
 	if player_raycast.is_colliding():
-		if player_raycast.get_collider() != player_pawn: return false
+		if player_raycast.get_collider() != player_pawn: 
+			return false
+		print("Colliding with: %s" % player_raycast.get_collider()) 
 		return true
 	return false
 	
@@ -77,19 +85,30 @@ func _ready() -> void:
 	choose_next_behaviour()
 	return
 
+func _alert(mask_state : GVar.MASK) -> void:
+	match mask_state:
+		GVar.MASK.MASK_ON:
+			return
+		GVar.MASK.MASK_OFF:
+			alerted = true
+			choose_next_behaviour()
+	return
+
 func _do_behaviour() -> void:
 	match current_behaviour:
 		BEHAVIOUR.IDLE:
 			_idle()
 			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.IDLE)
 		BEHAVIOUR.WALK:
+			ai_speed = AI_WALK_SPEED
 			_set_target_position()
 			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
 		BEHAVIOUR.HUNTING:
+			ai_speed = AI_WALK_SPEED
 			_set_target_position()
 			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
 		BEHAVIOUR.FLEE:
-			idle_timeout.emit()
+			ai_speed = AI_RUN_SPEED
 			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.RUN)
 	return
 
@@ -129,7 +148,7 @@ func _go_to_target_position() -> void:
 		return
 	var target_position = navigation_agent_3d.get_next_path_position()
 	var local_position = target_position - global_position
-	var direction = (local_position.normalized() * ai_walk_speed)
+	var direction = (local_position.normalized() * ai_speed)
 	
 	navigation_agent_3d.set_velocity(direction)
 	return
@@ -146,6 +165,18 @@ func _physics_process(delta: float) -> void:
 	elif current_behaviour == BEHAVIOUR.AIMING:
 		_aim_at_player()
 	if !should_navigate: return
+	elif current_behaviour == BEHAVIOUR.FLEE:
+		var distance_from_player = GVar.player_controller.possessed_pawn.global_position - pawn.global_position
+		if abs(distance_from_player.x + distance_from_player.z) > 40.0 : 
+			alerted = false
+			current_behaviour = BEHAVIOUR.WALK
+			_do_behaviour()
+			_set_target_position()
+			return
+		var direction_to_player = (GVar.player_controller.possessed_pawn.global_position - pawn.global_position).normalized()
+		var run_location = pawn.global_position - (direction_to_player * 10.0)
+		navigation_agent_3d.set_target_position(run_location)
+		_go_to_target_position()
 	elif current_behaviour == BEHAVIOUR.WALK || current_behaviour == BEHAVIOUR.FLEE || current_behaviour == BEHAVIOUR.HUNTING:
 		_go_to_target_position()
 
@@ -170,6 +201,13 @@ func _shoot_at_player() -> void:
 		await get_tree().create_timer(randf_range(1.5, 3.5)).timeout
 		is_shooting = false
 	shot.emit()
+	
+func _player_dead() -> void:
+	current_behaviour = BEHAVIOUR.WALK
+	is_shooting = false
+	should_navigate = true
+	_do_behaviour()
+	return
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	if pawn.is_dead : return
@@ -177,7 +215,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 		pawn.velocity = Vector3.ZERO
 		return
 	pawn.velocity = pawn.velocity.move_toward(safe_velocity, 0.75)
-	if !(pawn.global_position - safe_velocity) == pawn.global_position :
+	if !(pawn.global_position - safe_velocity).is_equal_approx(pawn.global_position) :
 		pawn.character_model.look_at(pawn.global_position - safe_velocity)
 	pawn.move_and_slide()
 	return

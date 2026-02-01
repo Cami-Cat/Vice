@@ -27,6 +27,7 @@ signal is_unpossessed()
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var pawn_ai: pawn_AI = $PawnAI
 
+var fear_radius : FearRadius
 var hunger:Hunger = null
 var mask_on:bool = true
 var toggle_mask_on_cooldown:bool = false
@@ -49,7 +50,9 @@ func can_unpossess() -> bool:
 
 func die():
 	if _is_possessed:
-		GVar.signal_bus.player_died.emit()
+		GVar.signal_bus.player_died.emit() 
+		if fear_radius:
+			fear_radius.queue_free()
 	else:
 		GVar.signal_bus.pawn_died.emit()
 		character_model.change_anim(character_model.ANIM_STATE.DIE)
@@ -113,7 +116,7 @@ func start_toggle_mask_cooldown():
 	toggle_mask_on_cooldown = true
 	var cooldown_timer:Timer = Timer.new()
 	add_child(cooldown_timer)
-	cooldown_timer.start(1.0)
+	cooldown_timer.start(5.0)
 	await cooldown_timer.timeout
 	toggle_mask_on_cooldown = false
 	cooldown_timer.queue_free()
@@ -124,13 +127,15 @@ func toggle_mask():
 	else:
 		start_toggle_mask_cooldown()
 	var desired_mask:bool = !mask_on
-	# wrote shit for readability
+
 	if desired_mask == true:
 		if hunger.current_hunger > hunger.hunger_threshold_to_mask:
 			mask_on = desired_mask
 			GVar.signal_bus.mask_changed.emit(GVar.MASK.MASK_ON)
 			GSound.play_sound(&"SFX",SND_PLAYER_MASK_ON)
 			print("I put the mask on")
+			if fear_radius:
+				fear_radius.queue_free()
 		else:
 			print("Me still hungy")
 	else:
@@ -138,6 +143,8 @@ func toggle_mask():
 		GVar.signal_bus.mask_changed.emit(GVar.MASK.MASK_OFF)
 		GSound.play_sound(&"SFX",SND_PLAYER_MASK_OFF)
 		print("I take the mask off")
+		fear_radius = FearRadius.new()
+		add_child(fear_radius)
 	pass
 
 func change_visibilty(to : bool = false) -> void:
