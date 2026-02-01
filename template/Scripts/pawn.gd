@@ -55,7 +55,6 @@ func die():
 			fear_radius.queue_free()
 		movement_component.queue_free()
 		hunger.queue_free()
-		self.find_child("CameraTargetComponent").queue_free()
 		GVar.signal_bus.player_died.emit()
 	else:
 		GVar.signal_bus.pawn_died.emit()
@@ -103,9 +102,10 @@ func _attack(pawn:Pawn):
 	if !is_instance_valid(pawn) : return
 	if pawn.is_dead:
 		_feed()
-		if !is_instance_valid(pawn) : return
-		pawn.character_model.queue_free()
-		pawn.collision_shape_3d.queue_free()
+		if is_instance_valid(pawn.character_model) :
+			pawn.character_model.queue_free()
+		if is_instance_valid(pawn.collision_shape_3d):
+			pawn.collision_shape_3d.queue_free()
 	else:
 		print("ATTACK")
 		pawn.is_dead = true
