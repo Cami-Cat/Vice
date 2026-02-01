@@ -9,6 +9,7 @@ var blur_effect_material:ShaderMaterial
 var mask_effect_material:ShaderMaterial
 
 func _ready() -> void:
+	z_index = GVar.LAYER_DICT[GVar.LAYERS.LOWER]
 	if GVar.game_manager == null:
 		while(GVar.game_manager == null):
 			await get_tree().process_frame

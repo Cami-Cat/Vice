@@ -10,6 +10,11 @@ const SND_MALE_HURT_01 = preload("res://Assets/Audio/SFX/Raw/MaleOuchies/snd_mal
 const SND_MALE_HURT_02 = preload("res://Assets/Audio/SFX/Raw/MaleOuchies/snd_male_hurt_02.wav")
 const SND_MALE_HURT_03 = preload("res://Assets/Audio/SFX/Raw/MaleOuchies/snd_male_hurt_03.wav")
 const SND_PLAYER_BITE = preload("res://Assets/Audio/SFX/Raw/snd_player_bite.wav")
+const SND_SOLDIER_DEATH_BEEP = preload("res://Assets/Audio/SFX/Raw/snd_soldier_death_beep.wav")
+const SND_PLAYER_EATING_LOOP = preload("res://Assets/Audio/SFX/Raw/snd_player_eating_loop.wav")
+const BLOOD_EFFECT = preload("res://blood_effect.tscn")
+const BLOOD_DECAL = preload("res://blood_decal.tscn")
+const SND_PLAYER_BULLET_DEATH = preload("res://Assets/Audio/SFX/Raw/snd_player_bullet_death.wav")
 
 
 const female_hurt_array:Array = [SND_FEMALE_HURT_01,SND_FEMALE_HURT_02,SND_FEMALE_HURT_03]
@@ -23,14 +28,18 @@ signal is_unpossessed()
 @onready var character_model: CharacterModel = $CharacterModel
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var funny_box: MeshInstance3D = $"CharacterModel/Funny box"
+@onready var camera_target_component: CameraTarget = $CameraTargetComponent
 
 @onready var movement_component: MovementComponent = $MovementComponent
 @onready var pawn_ai: pawn_AI = $PawnAI
 
 var fear_radius : FearRadius
 var hunger:Hunger = null
+var feed_timer:Timer
 var mask_on:bool = true
 var toggle_mask_on_cooldown:bool = false
+var lclick_on_cooldown:bool = false
+var is_feeding:bool = false
 
 var is_dead:bool = false:
 	set(value):
@@ -50,16 +59,24 @@ func can_unpossess() -> bool:
 
 func die():
 	if _is_possessed:
-		GVar.signal_bus.player_died.emit() 
+		GVar.signal_bus.player_died.emit()
+		GSound.play_sound(&"SFX",SND_PLAYER_BULLET_DEATH)
+		if feed_timer:
+			feed_timer.queue_free()
 		if fear_radius:
 			fear_radius.queue_free()
 	else:
 		GVar.signal_bus.pawn_died.emit()
 		character_model.change_anim(character_model.ANIM_STATE.DIE)
-	if character_model.is_woman:
-		GSound.play_sound(&"SFX",female_hurt_array.pick_random())
-	else:
-		GSound.play_sound(&"SFX",male_hurt_array.pick_random())
+		match pawn_ai.ai_type:
+			pawn_ai.AI_TYPE.CITIZEN:
+				if character_model.is_woman:
+					GSound.play_sound(&"SFX",female_hurt_array.pick_random())
+				else:
+					GSound.play_sound(&"SFX",male_hurt_array.pick_random())
+			pawn_ai.AI_TYPE.HUNTER:
+				GSound.play_sound(&"SFX",SND_SOLDIER_DEATH_BEEP)
+				GSound.play_sound(&"SFX",male_hurt_array.pick_random())
 	lay_hitbox_down()
 
 func lay_hitbox_down():
@@ -80,6 +97,9 @@ func possessed():
 
 func action():
 	var pawn:Pawn = GVar.player_context_raycast.hovered_pawn
+	if lclick_on_cooldown: return
+	if is_feeding: return
+	start_lclick_cooldown()
 	if pawn:
 		if mask_on:
 			_talk()
@@ -95,13 +115,50 @@ func action():
 
 func _attack(pawn:Pawn):
 	if pawn.is_dead:
-		_feed()
+		_feed(pawn)
 	else:
-		print("ATTACK")
 		pawn.is_dead = true
 
-func _feed():
-	pass
+func _feed(pawn:Pawn):
+	is_feeding = true
+	spawn_blood(pawn)
+	movement_component.toggle_disabled(true)
+	GSound.play_sound_for_time(&"SFX",SND_PLAYER_EATING_LOOP,2.0,true)
+	camera_target_component.disabled = true
+	GVar.signal_bus.player_start_feed.emit()
+	feed_timer = Timer.new()
+	feed_timer.one_shot = true
+	add_child(feed_timer)
+	feed_timer.start(2.0)
+	feed_timer.timeout.connect(_feed_success.bind(pawn))
+
+func spawn_blood(pawn:Pawn):
+	var blood_particles:Node3D = BLOOD_EFFECT.instantiate()
+	GVar.active_scene.add_child(blood_particles)
+	blood_particles.global_position = pawn.funny_box.global_position + Vector3(0.0,1.0,0.0)
+	var create_decals_timer:Timer = Timer.new()
+	pawn.add_child(create_decals_timer)
+	create_decals_timer.timeout.connect(pawn.spawn_decal)
+	create_decals_timer.start(0.4)
+
+func spawn_decal():
+	var a = randf_range(0,2*PI)
+	var d = 2.0 * sqrt(randf_range(0.0,1.0))
+	var blood_decal:BloodDecal = BLOOD_DECAL.instantiate()
+	blood_decal.position = Vector3(
+		funny_box.global_position.x + d * cos(a),
+		funny_box.global_position.y,
+		funny_box.global_position.z + d * sin(a)
+		)
+	GVar.game_manager.add_child(blood_decal)
+func _feed_success(pawn):
+	GVar.signal_bus.player_fed.emit()
+	camera_target_component.disabled = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	movement_component.toggle_disabled(false)
+	pawn.queue_free()
+	hunger.feed(50.0)
+	is_feeding = false
 
 func _whistle():
 	pass
@@ -111,6 +168,15 @@ func _scream():
 
 func _talk():
 	print("UWU")
+
+func start_lclick_cooldown():
+	lclick_on_cooldown = true
+	var cooldown_timer:Timer = Timer.new()
+	add_child(cooldown_timer)
+	cooldown_timer.start(0.2)
+	await cooldown_timer.timeout
+	lclick_on_cooldown = false
+	cooldown_timer.queue_free()
 
 func start_toggle_mask_cooldown():
 	toggle_mask_on_cooldown = true

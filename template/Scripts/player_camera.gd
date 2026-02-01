@@ -16,13 +16,15 @@ func _ready() -> void:
 			await get_tree().process_frame
 	GVar.signal_bus.mask_changed.connect(mask_changed)
 	GVar.signal_bus.pawn_died.connect(shake_shake_shake)
+	GVar.signal_bus.player_start_feed.connect(shake_shake_shake.bind(2.01))
 	return
 
-func shake_shake_shake():
+func shake_shake_shake(period_overide:float = 0.0):
+	var true_period = period + period_overide
 	var initial_transform = self.transform 
 	var elapsed_time = 0.0
 
-	while elapsed_time < period:
+	while elapsed_time < true_period:
 		var offset = Vector3(
 			randf_range(-magnitude, magnitude),
 			randf_range(-magnitude, magnitude),
