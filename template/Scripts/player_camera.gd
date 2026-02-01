@@ -36,7 +36,7 @@ func shake_shake_shake(period_overide:float = 0.0):
 
 		self.transform.origin = initial_transform.origin + offset
 		elapsed_time += get_process_delta_time()
-		await get_tree().process_frame
+		#await get_tree().process_frame
 
 	self.transform = initial_transform
 

@@ -18,3 +18,9 @@ func _physics_process(delta: float) -> void:
 func toggle_disabled(state:bool) -> void:
 	disabled = state
 	pass
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.key_label == KEY_M:
+			var music = AudioServer.get_bus_index("Music")
+			AudioServer.set_bus_mute(music, true)

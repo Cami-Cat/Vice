@@ -18,6 +18,9 @@ func set_mask_on(state:GVar.MASK):
 			mask_on = true
 		GVar.MASK.MASK_OFF:
 			mask_on = false
+	if !is_instance_valid(GVar.player_context_raycast.hovered_pawn) : 
+		_change_crosshair(null)
+		return
 	_change_crosshair(GVar.player_context_raycast.hovered_pawn)
 
 func _change_crosshair(pawn:Pawn):
