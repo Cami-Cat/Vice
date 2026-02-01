@@ -87,6 +87,7 @@ Sprint_Action={
 
 [layer_names]
 
+3d_physics/layer_1="Floor"
 3d_physics/layer_2="Pawn"
 
 [physics]

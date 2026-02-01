@@ -1,3 +1,6 @@
+Decal
+CPUParticles3D
+CPUParticles2D
 CollisionShape3D
 Area3D
 MeshInstance3D
@@ -10,5 +13,3 @@ Panel
 Node3D
 AnimationPlayer
 NavigationObstacle3D
-NavigationRegion3D
-NavigationAgent3D

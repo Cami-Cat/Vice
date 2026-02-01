@@ -7,6 +7,9 @@ enum ANIM_STATE {
 	WALK,
 	RUN,
 	DIE,
+	IDLE_GUN,
+	WALK_GUN,
+	RUN_GUN,
 }
 
 var is_woman:bool = true
@@ -16,14 +19,19 @@ var general_anim_player: AnimationPlayer
 const GENERAL_ANIM_PLAYER = preload("res://Scenes/Character/general_anim_player.tscn")
 
 func _ready() -> void:
-	var _randi:int = randi_range(0,1)
+	while (get_parent().pawn_ai == null):
+		await get_tree().process_frame
 	var scene_to_instantiate:PackedScene
-	if _randi == 0:
-		is_woman = false
-	if is_woman:
-		scene_to_instantiate = GVar.character_mesh_array_f.pick_random()
+	if get_parent().pawn_ai.ai_type == get_parent().pawn_ai.AI_TYPE.HUNTER:
+		scene_to_instantiate = GVar.character_mesh_array_s[0]
 	else:
-		scene_to_instantiate = GVar.character_mesh_array_m.pick_random()
+		var _randi:int = randi_range(0,1)
+		if _randi == 0:
+			is_woman = false
+		if is_woman:
+			scene_to_instantiate = GVar.character_mesh_array_f.pick_random()
+		else:
+			scene_to_instantiate = GVar.character_mesh_array_m.pick_random()
 	var model = scene_to_instantiate.instantiate()
 	add_child(model)
 	general_anim_player = GENERAL_ANIM_PLAYER.instantiate()
@@ -46,3 +54,9 @@ func change_anim(anim:ANIM_STATE):
 		ANIM_STATE.DIE:
 			var t_array:Array[String] = ["Imported_Anim_Library/char_anim_death_1","Imported_Anim_Library/char_anim_death_2"]
 			general_anim_player.play(t_array.pick_random())
+		ANIM_STATE.IDLE_GUN:
+			general_anim_player.play("Imported_Anim_Library/char_anim_rifle_idle")
+		ANIM_STATE.WALK_GUN:
+			general_anim_player.play("Imported_Anim_Library/char_anim_rifle_walk")
+		ANIM_STATE.RUN_GUN:
+			general_anim_player.play("Imported_Anim_Library/char_anim_rifle_run")

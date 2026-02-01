@@ -7,12 +7,11 @@ func _get_camera_basis() -> Basis:
 func _physics_process(delta: float) -> void:
 	if !pawn.is_on_floor():
 		pawn.velocity.y -= (gravity / 100.0) * delta
-	
+	if disabled: return
 	var input_direction = Input.get_vector("Strafe_Left", "Strafe_Right", "Walk_Forward", "Walk_Backward")
 	input_direction = input_direction.normalized()
 	var sprint_input = Input.is_action_pressed("Sprint_Action")
 	var direction = (_get_camera_basis() * Vector3(input_direction.x, 0.0, input_direction.y)).normalized()
-
 	if input_direction.x == 0.0:
 		pawn.velocity.x = 0.0
 	if input_direction.y == 0.0:

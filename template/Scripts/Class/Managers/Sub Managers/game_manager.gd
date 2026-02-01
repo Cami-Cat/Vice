@@ -39,6 +39,7 @@ func _ready() -> void:
 	signal_bus.player_died.connect(player_died)
 
 func player_died():
+	print("player died")
 	GSound.play_sound(&"SFX",MUSIC_PLAYER_DEATH)
 
 func create_sub_managers():
