@@ -1095,6 +1095,7 @@ shape = SubResource("ConvexPolygonShape3D_85gqa")
 
 [node name="Pawn" parent="Pawns/Player Controlled" index="0" unique_id=840618511 instance=ExtResource("2_fu27m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03245163, 0.013174534, 0)
+collision_layer = 7
 
 [node name="Hunters" type="Node3D" parent="Pawns" index="1" unique_id=515850470]
 

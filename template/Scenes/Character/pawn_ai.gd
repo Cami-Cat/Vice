@@ -70,7 +70,8 @@ func _can_see_player_pawn() -> bool:
 	var player_pawn : Pawn = GVar.player_controller.possessed_pawn
 	var direction = (player_pawn.global_position - pawn.global_position).normalized()
 	player_raycast.target_position = direction * 20.0
-	player_raycast.collision_mask = 2
+	player_raycast.set_collision_mask_value(2, true)
+	player_raycast.set_collision_mask_value(3, true)
 	if player_raycast.is_colliding():
 		if player_raycast.get_collider() != player_pawn: 
 			return false
@@ -192,11 +193,13 @@ func _physics_process(_delta: float) -> void:
 
 func _aim_at_player() -> void:
 	if _can_see_player_pawn():
+		if pawn.is_dead : return
 		should_navigate = false
 		if is_shooting : return
 		is_shooting = true
 		await _shoot_at_player()
 	else:
+		if pawn.is_dead : return
 		if is_shooting : await shot
 		current_behaviour = BEHAVIOUR.HUNTING
 		should_navigate = true
@@ -205,16 +208,18 @@ func _aim_at_player() -> void:
 func _shoot_at_player() -> void:
 	# Aiming cooldown
 	await get_tree().create_timer(randf_range(1.0, 2.5)).timeout
-	
+	if pawn.is_dead : return 
 	if player_raycast.is_colliding() && player_raycast.get_collider() is Pawn:
 		player_raycast.get_collider().die()
 		GVar.signal_bus.hunter_shot_player.emit(global_position)
 		# Shooting cooldown
 		await get_tree().create_timer(randf_range(1.5, 3.5)).timeout
+		if pawn.is_dead : return
 		is_shooting = false
 	shot.emit()
 	
 func _player_dead() -> void:
+	if pawn.is_dead : return
 	current_behaviour = BEHAVIOUR.WALK
 	is_shooting = false
 	should_navigate = true

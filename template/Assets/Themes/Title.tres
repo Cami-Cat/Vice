@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://buqln6ytlbypf"]
+
+[ext_resource type="FontFile" uid="uid://2wum6om7a46r" path="res://Assets/Fonts/Ghastly Panic.ttf" id="1_qtvt7"]
+
+[resource]
+Label/font_sizes/font_size = 150
+Label/fonts/font = ExtResource("1_qtvt7")

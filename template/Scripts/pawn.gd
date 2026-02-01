@@ -65,9 +65,11 @@ func die():
 			feed_timer.queue_free()
 		if fear_radius:
 			fear_radius.queue_free()
+		return
 	else:
 		GVar.signal_bus.pawn_died.emit()
 		character_model.change_anim(character_model.ANIM_STATE.DIE)
+		if !pawn_ai : return
 		match pawn_ai.ai_type:
 			pawn_ai.AI_TYPE.CITIZEN:
 				if character_model.is_woman:
@@ -86,7 +88,8 @@ func lay_hitbox_down():
 func possessed():
 	hunger = Hunger.new()
 	add_child(hunger)
-	set_collision_layer_value(3,true)
+	set_collision_layer_value(2, false)
+	set_collision_layer_value(3, true)
 	var action_component:ActionComponent = ActionComponent.new()
 	movement_component.queue_free()
 	movement_component = MovementComponentPlayer.new()
@@ -94,10 +97,12 @@ func possessed():
 	add_child(action_component)
 	action_component.mask_action_pressed.connect(toggle_mask)
 	action_component.lclick_action_pressed.connect(action)
-	pawn_ai.queue_free()
+	if pawn_ai:
+		pawn_ai.queue_free()
 
 func action():
 	var pawn:Pawn = GVar.player_context_raycast.hovered_pawn
+	if pawn == self : return
 	if lclick_on_cooldown: return
 	if is_feeding: return
 	start_lclick_cooldown()
@@ -115,6 +120,7 @@ func action():
 	pass
 
 func _attack(pawn:Pawn):
+	if pawn == self : return
 	if pawn.is_dead:
 		_feed(pawn)
 	else:
@@ -132,6 +138,7 @@ func _feed(pawn:Pawn):
 	add_child(feed_timer)
 	feed_timer.start(2.0)
 	feed_timer.timeout.connect(_feed_success.bind(pawn))
+	GVar.signal_bus.player_fed.emit()
 
 func spawn_blood(pawn:Pawn):
 	var blood_particles:Node3D = BLOOD_EFFECT.instantiate()

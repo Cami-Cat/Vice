@@ -12,6 +12,11 @@ var game_rules : Dictionary[String, int] = {
 	"NumberOfHunters" : 5
 }
 
+var game_stats : Dictionary[String, Variant] = {
+	"Kills" : 0,
+	"Feeds" : 0,
+}
+
 var managers_to_load:Array[GVar.SUB_MANAGERS] = [GVar.SUB_MANAGERS.UI_MANAGER]
 var manager_dict:Dictionary[GVar.SUB_MANAGERS,ManagerBase]
 var managers_ready_state_dict:Dictionary
@@ -38,8 +43,19 @@ func _ready() -> void:
 	super()
 	_game_ready()
 	signal_bus.game_ready.emit()
+	signal_bus.pawn_died.connect(pawn_killed)
+	signal_bus.player_fed.connect(player_fed)
 	signal_bus.player_died.connect(player_died)
 	add_child(ENEMY_RADIO.instantiate())
+
+func pawn_killed() -> void:
+	game_stats["Kills"] += 1
+	print("Pawn died! %s" % [game_stats["Kills"]])
+	return
+
+func player_fed() -> void:
+	game_stats["Feeds"] += 1
+	return
 
 func player_died():
 	print("player died")
@@ -63,7 +79,8 @@ func check_all_managers_ready():
 
 func _construct_player_controller() -> void:
 	var player_controller : PlayerController = PlayerController.new()
-	signal_bus.game_ready.connect(player_controller._game_start)
+	signal_bus.game_start.connect(player_controller._game_start)
+	signal_bus.player_died.connect(player_controller.player_died)
 	GVar.set("player_controller", player_controller)
 	add_child(player_controller)
 

@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://c76j1aejkn6bm"]
+
+[ext_resource type="Script" uid="uid://dsdy01al27i8n" path="res://Assets/death_ui.gd" id="1_uasmo"]
+[ext_resource type="Theme" uid="uid://buqln6ytlbypf" path="res://Assets/Themes/Title.tres" id="1_urvmu"]
+[ext_resource type="Theme" uid="uid://bpgkkd78x4hor" path="res://Assets/Themes/Button.tres" id="2_uasmo"]
+[ext_resource type="Script" uid="uid://gi5pawnr8cwa" path="res://Assets/quit_button.gd" id="3_urvmu"]
+[ext_resource type="Script" uid="uid://d3wfqd3jvw1mv" path="res://Scenes/UI/give_up.gd" id="4_evsm2"]
+
+[node name="Death UI" type="Control" unique_id=1965289737]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uasmo")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1632474677]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 572.0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="Count Titles" type="HBoxContainer" parent="ColorRect" unique_id=1755108977]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -238.0
+offset_right = 20.0
+offset_bottom = -198.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 207
+
+[node name="Kills" type="Label" parent="ColorRect/Count Titles" unique_id=1706702404]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Kills"
+
+[node name="Kill Count" type="Label" parent="ColorRect/Count Titles/Kills" unique_id=467940891]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 63.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Feeds" type="Label" parent="ColorRect/Count Titles" unique_id=1680628319]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Feeds"
+
+[node name="Feed Count" type="Label" parent="ColorRect/Count Titles/Feeds" unique_id=196975142]
+layout_mode = 0
+offset_top = 39.0
+offset_right = 89.0
+offset_bottom = 84.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="." unique_id=1473801228]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 105.0
+offset_right = 454.0
+offset_bottom = 244.0
+theme = ExtResource("1_urvmu")
+text = "THE HUNGER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2002467983]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 125.0
+offset_top = -103.5
+offset_right = 441.0
+offset_bottom = 103.5
+grow_vertical = 2
+theme_override_constants/separation = 107
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1988649361]
+custom_minimum_size = Vector2(10, 50)
+layout_mode = 2
+theme = ExtResource("2_uasmo")
+text = "Restart"
+script = ExtResource("3_urvmu")
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1444071602]
+custom_minimum_size = Vector2(10, 50)
+layout_mode = 2
+theme = ExtResource("2_uasmo")
+text = "GIVE UP"
+script = ExtResource("4_evsm2")
+
+[node name="Footer" type="Control" parent="." unique_id=463729824]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Footer" unique_id=1604252731]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -39.0
+offset_right = 236.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "Global Game Jam 2026 Entry"

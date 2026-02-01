@@ -1,6 +1,11 @@
 class_name PlayerController
 extends Node
 
+const menu_ui : PackedScene = preload("res://Scenes/UI/menu_ui.tscn")
+const death_ui : PackedScene = preload("res://Assets/death_ui.tscn")
+var main_menu : Control
+var death_menu : Control
+
 signal player_pawn_selected(pawn : Pawn)
 
 var player_index : int = 0
@@ -15,6 +20,42 @@ func _init() -> void:
 func _construct_input_handler() -> void:
 	var input_manager = InputManager.new(self)
 	add_child(input_manager)
+	return
+	
+func _ready() -> void:
+	_set_to_main_menu()
+	return
+
+func _set_to_main_menu() -> void:
+	await get_tree().process_frame
+	var ui_manager : UIManager = GVar.game_manager.manager_dict[GVar.SUB_MANAGERS.UI_MANAGER]
+	ui_manager.ui_main.hide()
+	main_menu = menu_ui.instantiate()
+	add_child(main_menu)
+	player_camera.global_position.y += 50.0
+	player_camera.rotation_degrees.x -= 90.0
+	player_camera._menu_rotate(true)
+	return
+
+func player_died() -> void:
+	var ui_manager : UIManager = GVar.game_manager.manager_dict[GVar.SUB_MANAGERS.UI_MANAGER]
+	ui_manager.ui_main.hide()
+	player_camera._menu_rotate(true)
+	death_menu = death_ui.instantiate()
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	add_child(death_menu)
+	player_camera.get_parent().remove_child(player_camera)
+	possessed_pawn.character_model.show()
+	possessed_pawn.character_model.change_anim(CharacterModel.ANIM_STATE.DIE)
+	possessed_pawn._is_possessed = false
+	add_child(player_camera)
+	await get_tree().create_timer(0.1).timeout
+	death_menu._get_stats()
+	player_camera.global_position = possessed_pawn.global_position
+	var tween = GTwn._tween_property(player_camera, "global_position", Vector3(possessed_pawn.global_position.x, possessed_pawn.global_position.y + 5.0, possessed_pawn.global_position.z), 2.0)
+	#GTwn._parallel_property(player_camera, tween, "rotation_degrees:x", player_camera.rotation_degrees.x - 90, 2.0)
+	GTwn._parallel_property(player_camera, tween, "rotation_degrees", Vector3(player_camera.rotation_degrees.x - 90, 0, 0), 0.5)
+	await GTwn.kill_tween(tween) 
 	return
 
 func _construct_camera_rig() -> void:
@@ -34,7 +75,14 @@ func _construct_camera_rig() -> void:
 	
 func _game_start() -> void:
 	print("Game Start!")
+	player_camera._menu_rotate(false)
 	_possess_random_pawn()
+	var tween = GTwn._tween_property(player_camera, "global_position", possessed_pawn.camera_target_component.global_position, 2.0)
+	GTwn._parallel_property(player_camera, tween, "rotation_degrees", Vector3.ZERO, 2.0)
+	await GTwn.kill_tween(tween)
+	main_menu.hide()
+	var ui_manager : UIManager = GVar.game_manager.manager_dict[GVar.SUB_MANAGERS.UI_MANAGER]
+	ui_manager.ui_main.show()
 	# Alternative implementation is to give the player the ability to select a random pawn from a sky-view of the city.
 	return
 

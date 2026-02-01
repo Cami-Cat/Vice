@@ -1,3 +1,9 @@
+HBoxContainer
+Label
+Control
+ColorRect
+Button
+VBoxContainer
 TextureRect
 ColorRect
 CollisionShape3D

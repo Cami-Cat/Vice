@@ -9,7 +9,7 @@ var hovered_pawn:Pawn = null:
 
 func _init() -> void:
 	target_position = Vector3(0.0,0.0,-5.0)
-	collision_mask = 2
+	set_collision_mask_value(2, true)
 
 func _ready() -> void:
 	GVar.player_context_raycast = self
