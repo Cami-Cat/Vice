@@ -1,0 +1,17 @@
+[gd_resource type="Theme" format=3 uid="uid://bpgkkd78x4hor"]
+
+[ext_resource type="FontFile" uid="uid://2wum6om7a46r" path="res://Assets/Fonts/Ghastly Panic.ttf" id="1_i4icj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iupe"]
+
+[resource]
+Button/colors/font_hover_color = Color(0.90585965, 0, 0.19997787, 1)
+Button/font_sizes/font_size = 90
+Button/fonts/font = ExtResource("1_i4icj")
+Button/styles/disabled = SubResource("StyleBoxEmpty_1iupe")
+Button/styles/focus = SubResource("StyleBoxEmpty_1iupe")
+Button/styles/hover = SubResource("StyleBoxEmpty_1iupe")
+Button/styles/hover_mirrored = SubResource("StyleBoxEmpty_1iupe")
+Button/styles/hover_pressed = SubResource("StyleBoxEmpty_1iupe")
+Button/styles/normal = SubResource("StyleBoxEmpty_1iupe")
+Button/styles/pressed = SubResource("StyleBoxEmpty_1iupe")

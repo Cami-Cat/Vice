@@ -20,6 +20,7 @@ signal is_unpossessed()
 
 @export var _can_possess : bool = true
 
+@onready var camera_target_component: CameraTarget = $CameraTargetComponent
 @onready var character_model: CharacterModel = $CharacterModel
 @onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 @onready var funny_box: MeshInstance3D = $"CharacterModel/Funny box"
@@ -50,9 +51,12 @@ func can_unpossess() -> bool:
 
 func die():
 	if _is_possessed:
-		GVar.signal_bus.player_died.emit() 
 		if fear_radius:
 			fear_radius.queue_free()
+		movement_component.queue_free()
+		hunger.queue_free()
+		self.find_child("CameraTargetComponent").queue_free()
+		GVar.signal_bus.player_died.emit()
 	else:
 		GVar.signal_bus.pawn_died.emit()
 		character_model.change_anim(character_model.ANIM_STATE.DIE)
@@ -67,6 +71,7 @@ func lay_hitbox_down():
 	collision_shape_3d.rotation = funny_box.global_rotation
 
 func possessed():
+	set_collision_layer_value(2, false)
 	hunger = Hunger.new()
 	add_child(hunger)
 	var action_component:ActionComponent = ActionComponent.new()
@@ -80,6 +85,7 @@ func possessed():
 
 func action():
 	var pawn:Pawn = GVar.player_context_raycast.hovered_pawn
+	if pawn == self: return
 	if pawn:
 		if mask_on:
 			_talk()
@@ -94,13 +100,19 @@ func action():
 	pass
 
 func _attack(pawn:Pawn):
+	if !is_instance_valid(pawn) : return
 	if pawn.is_dead:
 		_feed()
+		if !is_instance_valid(pawn) : return
+		pawn.character_model.queue_free()
+		pawn.collision_shape_3d.queue_free()
 	else:
 		print("ATTACK")
 		pawn.is_dead = true
 
 func _feed():
+	hunger.feed(25.0)
+	GVar.signal_bus.player_fed.emit()
 	pass
 
 func _whistle():
@@ -116,7 +128,7 @@ func start_toggle_mask_cooldown():
 	toggle_mask_on_cooldown = true
 	var cooldown_timer:Timer = Timer.new()
 	add_child(cooldown_timer)
-	cooldown_timer.start(5.0)
+	cooldown_timer.start(3.0)
 	await cooldown_timer.timeout
 	toggle_mask_on_cooldown = false
 	cooldown_timer.queue_free()

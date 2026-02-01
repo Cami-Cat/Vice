@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://3l0h02j3o4xr"]
+
+[ext_resource type="Theme" uid="uid://buqln6ytlbypf" path="res://Assets/Themes/Title.tres" id="1_ki7s7"]
+[ext_resource type="Theme" uid="uid://bpgkkd78x4hor" path="res://Assets/Themes/Button.tres" id="2_iyvmm"]
+[ext_resource type="Script" uid="uid://i0mvju2mqtbn" path="res://Scenes/UI/start_feeding_button.gd" id="3_iyvmm"]
+[ext_resource type="Script" uid="uid://d3wfqd3jvw1mv" path="res://Scenes/UI/give_up.gd" id="4_raaq3"]
+
+[node name="Menu UI" type="Control" unique_id=385166758]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=715278647]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 572.0
+grow_vertical = 2
+color = Color(0, 0, 0, 0.4)
+
+[node name="Title" type="Label" parent="." unique_id=1441306520]
+layout_mode = 1
+offset_left = 105.0
+offset_top = 105.0
+offset_right = 454.0
+offset_bottom = 244.0
+theme = ExtResource("1_ki7s7")
+text = "THE HUNGER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=888011538]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 125.0
+offset_top = -103.5
+offset_right = 441.0
+offset_bottom = 103.5
+grow_vertical = 2
+theme_override_constants/separation = 107
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=623504545]
+custom_minimum_size = Vector2(10, 50)
+layout_mode = 2
+theme = ExtResource("2_iyvmm")
+text = "START FEEDING"
+script = ExtResource("3_iyvmm")
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1373531765]
+custom_minimum_size = Vector2(10, 50)
+layout_mode = 2
+theme = ExtResource("2_iyvmm")
+text = "GIVE UP"
+script = ExtResource("4_raaq3")
+
+[node name="Footer" type="Control" parent="." unique_id=2033183141]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Footer" unique_id=500942416]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = -39.0
+offset_right = 236.0
+offset_bottom = -16.0
+grow_vertical = 0
+text = "Global Game Jam 2026 Entry"

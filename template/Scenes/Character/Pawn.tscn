@@ -10,7 +10,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_vqhvl"]
 
 [node name="Pawn" type="CharacterBody3D" unique_id=840618511 groups=["Pawn"]]
-collision_layer = 3
+collision_layer = 7
 script = ExtResource("1_wnnq1")
 
 [node name="CameraTargetComponent" type="Node3D" parent="." unique_id=782060190 groups=["CameraTarget"]]

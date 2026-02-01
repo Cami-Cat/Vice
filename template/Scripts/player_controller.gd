@@ -1,6 +1,9 @@
 class_name PlayerController
 extends Node
 
+const menu_ui : PackedScene = preload("res://Scenes/UI/menu_ui.tscn")
+var main_menu : Control
+
 signal player_pawn_selected(pawn : Pawn)
 
 var player_index : int = 0
@@ -15,6 +18,28 @@ func _init() -> void:
 func _construct_input_handler() -> void:
 	var input_manager = InputManager.new(self)
 	add_child(input_manager)
+	return
+	
+func _ready() -> void:
+	_set_to_main_menu()
+	return
+
+func _set_to_main_menu() -> void:
+	await get_tree().process_frame
+	var ui_manager : UIManager = GVar.game_manager.manager_dict[GVar.SUB_MANAGERS.UI_MANAGER]
+	ui_manager.ui_main.hide()
+	main_menu = menu_ui.instantiate()
+	add_child(main_menu)
+	player_camera.global_position.y += 50.0
+	player_camera.rotation_degrees.x -= 90.0
+	player_camera._menu_rotate(true)
+	return
+
+func player_died() -> void:
+	player_camera.rotation_degrees.x -= 90.0
+	var tween = GTwn._tween_property(player_camera, "global_position:y", player_camera.global_position.y + 50.0, 5.0)
+	await GTwn.kill_tween(tween)
+	player_camera._menu_rotate(true)
 	return
 
 func _construct_camera_rig() -> void:
@@ -34,7 +59,14 @@ func _construct_camera_rig() -> void:
 	
 func _game_start() -> void:
 	print("Game Start!")
+	player_camera._menu_rotate(false)
 	_possess_random_pawn()
+	var tween = GTwn._tween_property(player_camera, "global_position", possessed_pawn.camera_target_component.global_position, 2.0)
+	GTwn._parallel_property(player_camera, tween, "rotation_degrees", Vector3.ZERO, 2.0)
+	await GTwn.kill_tween(tween)
+	main_menu.hide()
+	var ui_manager : UIManager = GVar.game_manager.manager_dict[GVar.SUB_MANAGERS.UI_MANAGER]
+	ui_manager.ui_main.show()
 	# Alternative implementation is to give the player the ability to select a random pawn from a sky-view of the city.
 	return
 

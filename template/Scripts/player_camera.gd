@@ -7,6 +7,9 @@ extends Camera3D
 @export var magnitude = 0.4
 var camera_speed : float = 2.0 # units
 
+var camera_rotate : bool = false
+var camera_rotation_speed : float = 1.5
+
 func _init() -> void:
 	return
 
@@ -43,8 +46,13 @@ func mask_changed(state:GVar.MASK):
 		GVar.MASK.MASK_OFF:
 			tween.tween_property(self,"fov",starting_fov*1.5,1.0)
 
+func _menu_rotate(do : bool = false) -> void:
+	camera_rotate = do
+	return
+
 func _process(delta: float) -> void:
-	position -= (camera_target.global_position - global_position) * delta
+	if camera_rotate:
+		rotation_degrees.y += camera_rotation_speed * delta
 	return
 
 func set_target(in_target : Node3D) -> void:
