@@ -4,6 +4,8 @@ extends ManagerBase
 const GAME_MUSIC_AUDIO_PLAYER = preload("res://Assets/Audio/Music/game_music_audio_player.tscn")
 const MUSIC_PLAYER_DEATH = preload("res://Assets/Audio/SFX/Raw/music_playerDeath.ogg")
 
+const ENEMY_RADIO = preload("res://enemy_radio.tscn")
+
 signal all_managers_ready()
 
 var game_rules : Dictionary[String, int] = {
@@ -37,6 +39,7 @@ func _ready() -> void:
 	_game_ready()
 	signal_bus.game_ready.emit()
 	signal_bus.player_died.connect(player_died)
+	add_child(ENEMY_RADIO.instantiate())
 
 func player_died():
 	print("player died")

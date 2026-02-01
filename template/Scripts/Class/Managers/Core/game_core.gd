@@ -13,5 +13,5 @@ func _ready() -> void:
 
 func set_gvar_scene_variables():
 	GVar.set("active_scene",scene_manager.current_scene)
-	GVar.set("active_game_manager",scene_manager.current_scene.game_manager)
-	GVar.set("active_signal_bus",scene_manager.current_scene.game_manager.signal_bus)
+	GVar.set("game_manager",scene_manager.current_scene.game_manager)
+	GVar.set("signal_bus",scene_manager.current_scene.game_manager.signal_bus)

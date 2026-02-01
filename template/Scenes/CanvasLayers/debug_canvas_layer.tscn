@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://3m6nw2c2fmje" path="res://Scripts/Debug/debug_canvas_layer.gd" id="1_nv7jj"]
 
 [node name="DebugCanvasLayer" type="CanvasLayer" unique_id=635627409]
+layer = 999
 script = ExtResource("1_nv7jj")

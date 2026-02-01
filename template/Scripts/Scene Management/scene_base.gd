@@ -11,6 +11,7 @@ var signal_bus:SignalBus
 func _ready() -> void:
 	game_manager = GAME_MANAGER.instantiate()
 	add_child(game_manager)
+	await get_tree().process_frame
 	await game_manager.all_managers_ready
 	signal_bus = game_manager.signal_bus
 	scene_ready.emit()
