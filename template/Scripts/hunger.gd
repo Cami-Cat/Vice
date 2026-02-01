@@ -16,7 +16,6 @@ var hunger_timer:Timer
 @onready var current_hunger:float = max_hunger
 
 func _ready() -> void:
-	print("I exist")
 	hunger_timer = Timer.new()
 	add_child(hunger_timer)
 	hunger_timer.wait_time = hunger_decay_interval
@@ -26,6 +25,7 @@ func _ready() -> void:
 
 func hunger():
 	current_hunger -= hunger_decay
+	GVar.signal_bus.hunger_changed.emit(current_hunger/max_hunger)
 	if current_hunger <= 0.0:
 		hunger_empty.emit()
 	if current_hunger < hunger_threshold_for_forced_maskoff:

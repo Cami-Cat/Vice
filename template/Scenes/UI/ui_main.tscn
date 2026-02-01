@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://b33l07rn455xp" path="res://Scripts/UI/Menu/ui_main.gd" id="1_v7lif"]
 [ext_resource type="Material" uid="uid://dybbcfavpssln" path="res://Scripts/Resources/Materials/blurvignette_material.tres" id="2_b2hoh"]
+[ext_resource type="Material" uid="uid://cemht4ga2loa0" path="res://Scripts/Resources/Materials/progresswheel.tres" id="2_ch3em"]
 [ext_resource type="Texture2D" uid="uid://bnon0ttye7bxu" path="res://Assets/Sprites/t_mask_overlay.png" id="2_h3s1k"]
 [ext_resource type="PackedScene" uid="uid://clh5cdhe84w0j" path="res://Scenes/UI/cross_hair.tscn" id="2_pclsy"]
 [ext_resource type="Shader" uid="uid://qxngl7ju83fj" path="res://Scripts/Resources/Materials/tilt_transparent_material.gdshader" id="2_rad5t"]
+[ext_resource type="Material" uid="uid://bt51rfnmnd7yh" path="res://Scripts/Resources/Materials/prog_bar.tres" id="7_uu28k"]
+[ext_resource type="Texture2D" uid="uid://cb2o83kgewj52" path="res://Assets/Sprites/image2.png" id="8_3cdfh"]
+[ext_resource type="Texture2D" uid="uid://c4ujxwcs20m2q" path="res://Assets/Sprites/toggle mask.png" id="9_3cdfh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ch3em"]
 shader = ExtResource("2_rad5t")
@@ -21,6 +25,23 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_v7lif")
+
+[node name="ProgressWheel" type="ColorRect" parent="." unique_id=461127969]
+modulate = Color(1, 1, 1, 0)
+material = ExtResource("2_ch3em")
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MaskTexture" type="TextureRect" parent="." unique_id=2110900702]
 material = SubResource("ShaderMaterial_ch3em")
@@ -54,3 +75,37 @@ mouse_filter = 2
 [node name="CrossHair" parent="." unique_id=635694219 instance=ExtResource("2_pclsy")]
 modulate = Color(1, 1, 1, 0.45490196)
 layout_mode = 1
+
+[node name="HungerBar" type="TextureRect" parent="." unique_id=1780232047]
+material = ExtResource("7_uu28k")
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -285.0
+offset_top = -38.0
+offset_right = 101.0
+offset_bottom = 49.0
+grow_horizontal = 0
+grow_vertical = 2
+rotation = -1.5707964
+pivot_offset = Vector2(193, 43)
+texture = ExtResource("8_3cdfh")
+
+[node name="ToggleMask" type="TextureRect" parent="." unique_id=316410523]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -187.0
+offset_top = -272.99994
+offset_right = 37.0
+offset_bottom = -100.99994
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.7587209, 0.7587209)
+texture = ExtResource("9_3cdfh")

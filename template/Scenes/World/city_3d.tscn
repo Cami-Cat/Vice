@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://doij72a0ut3nk" path="res://Scenes/BaseScene/scene_base_3d.tscn" id="1_rpwb6"]
 [ext_resource type="PackedScene" uid="uid://7kiaigr1j55p" path="res://Scenes/Character/Pawn.tscn" id="2_fu27m"]
 [ext_resource type="PackedScene" uid="uid://53rflcelfvpy" path="res://npc_spawner.tscn" id="3_cl6jl"]
+[ext_resource type="PackedScene" uid="uid://cwnan5v0vuoqx" path="res://Assets/Meshes/Enviroment/Overall Environment.blend" id="4_jnfn7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fu27m"]
 sky_top_color = Color(0.19155541, 0.17851716, 0.1561881, 1)
@@ -1110,3 +1111,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.938843, 0, 104.69463)
 
 [node name="NPC Spawner4" parent="Pawns/NPCs" index="3" unique_id=947640183 instance=ExtResource("3_cl6jl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.554688, 0, -111.54506)
+
+[node name="Overall Environment" parent="." index="5" unique_id=2001537900 instance=ExtResource("4_jnfn7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5934528, 0.45714188, 1.5192881)
+
+[editable path="Overall Environment"]

@@ -1,3 +1,5 @@
+TextureRect
+ColorRect
 CollisionShape3D
 Area3D
 Node
@@ -7,8 +9,6 @@ CPUParticles2D
 MeshInstance3D
 StaticBody3D
 Camera3D
-TextureRect
-ColorRect
 AudioStreamPlayer
 Panel
 Node3D
