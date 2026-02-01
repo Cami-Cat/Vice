@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cemht4ga2loa0"]
+
+[ext_resource type="Shader" uid="uid://bkhpvsn7qdch" path="res://Scripts/Resources/Materials/progresswheel.gdshader" id="1_yduto"]
+
+[resource]
+shader = ExtResource("1_yduto")
+shader_parameter/bg_color = Color(0.13341314, 0.1378969, 0.13849965, 1)
+shader_parameter/progress_color_right = Color(0.9019608, 0, 0.2, 1)
+shader_parameter/progress_color_left = Color(0.9019608, 0, 0.2, 1)
+shader_parameter/A = 0.746000035435
+shader_parameter/B = 0.7110000337725
+shader_parameter/C = 0.6450000306375
+shader_parameter/D = 0.6050000287375
+shader_parameter/right_ratio = 0.0
+shader_parameter/left_ratio = 0.0
+shader_parameter/edge_softness = 0.01999999955297
+shader_parameter/rect_size = Vector2(256, 256)
+shader_parameter/pixel_size = 64.0
