@@ -1,8 +1,9 @@
+CollisionShape3D
+Area3D
+Node
 Decal
 CPUParticles3D
 CPUParticles2D
-CollisionShape3D
-Area3D
 MeshInstance3D
 StaticBody3D
 Camera3D
@@ -11,5 +12,3 @@ ColorRect
 AudioStreamPlayer
 Panel
 Node3D
-AnimationPlayer
-NavigationObstacle3D

@@ -86,6 +86,7 @@ func lay_hitbox_down():
 func possessed():
 	hunger = Hunger.new()
 	add_child(hunger)
+	set_collision_layer_value(3,true)
 	var action_component:ActionComponent = ActionComponent.new()
 	movement_component.queue_free()
 	movement_component = MovementComponentPlayer.new()

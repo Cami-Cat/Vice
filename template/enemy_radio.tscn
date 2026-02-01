@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ctdbfa7614y44"]
+
+[ext_resource type="Script" uid="uid://duq08xg21svnb" path="res://enemy_radio.gd" id="1_jebsu"]
+
+[node name="EnemyRadio" type="Node" unique_id=1176378621]
+script = ExtResource("1_jebsu")
