@@ -10,7 +10,7 @@
 [sub_resource type="BoxMesh" id="BoxMesh_vqhvl"]
 
 [node name="Pawn" type="CharacterBody3D" unique_id=840618511 groups=["Pawn"]]
-collision_layer = 7
+collision_layer = 2
 script = ExtResource("1_wnnq1")
 
 [node name="CameraTargetComponent" type="Node3D" parent="." unique_id=782060190 groups=["CameraTarget"]]
@@ -24,6 +24,15 @@ script = ExtResource("2_7i2vd")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.96328306, 0)
 shape = ExtResource("4_vqhvl")
 
+[node name="CharacterModel" type="Node3D" parent="." unique_id=1027913019]
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
+script = ExtResource("5_ufxi3")
+
+[node name="Funny box" type="MeshInstance3D" parent="CharacterModel" unique_id=1321217457]
+transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 3.5154512)
+visible = false
+mesh = SubResource("BoxMesh_vqhvl")
+
 [node name="PawnAI" type="Node3D" parent="." unique_id=1061600076]
 script = ExtResource("4_dvtaj")
 
@@ -35,14 +44,5 @@ neighbor_distance = 5.0
 time_horizon_agents = 0.2
 max_speed = 100.0
 debug_path_custom_color = Color(1, 0, 1, 1)
-
-[node name="CharacterModel" type="Node3D" parent="." unique_id=1027913019]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
-script = ExtResource("5_ufxi3")
-
-[node name="Funny box" type="MeshInstance3D" parent="CharacterModel" unique_id=1321217457]
-transform = Transform3D(1, 0, 0, 0, -4.3711392e-08, -1, 0, 1, -4.3711392e-08, 0, 0, 3.5154512)
-visible = false
-mesh = SubResource("BoxMesh_vqhvl")
 
 [connection signal="velocity_computed" from="PawnAI/NavigationAgent3D" to="PawnAI" method="_on_navigation_agent_3d_velocity_computed"]

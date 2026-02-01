@@ -5,8 +5,9 @@ extends Node3D
 @onready var parent_node : Node3D = self.get_parent()
 
 var _camera_input_dir : Vector2 = Vector2.ZERO
-
+var disabled:bool = false
 func _unhandled_input(event: InputEvent) -> void:
+	if disabled: return
 	if event is InputEventMouseMotion:
 		_camera_input_dir = event.screen_relative * camera_rotation_speed
 

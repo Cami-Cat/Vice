@@ -5,10 +5,22 @@ const CHARACTER_FEMALE_04 = preload("res://Assets/Meshes/CharacterSkeletalMeshes
 const CHARACTER_FEMALE_05 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_05.fbx")
 const CHARACTER_FEMALE_06 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_06.fbx")
 const CHARACTER_FEMALE_07 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_07.fbx")
+const CHARACTER_FEMALE_08 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_08.fbx")
+const CHARACTER_FEMALE_09 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_09.fbx")
+const CHARACTER_FEMALE_10 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Female/Character_Female_10.fbx")
+
 
 const CHARACTER_02 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_02.fbx")
 const CHARACTER_03 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_03.fbx")
 const CHARACTER_04 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_04.fbx")
+const CHARACTER_05 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_05.fbx")
+const CHARACTER_06 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_06.fbx")
+const CHARACTER_07 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_07.fbx")
+const CHARACTER_08 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_08.fbx")
+const CHARACTER_09 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_09.fbx")
+const CHARACTER_10 = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Male/Character_10.fbx")
+
+const CHARACTER_28_HM = preload("res://Assets/Meshes/CharacterSkeletalMeshes/Soldier/Character_28_HM.fbx")
 
 const character_mesh_array_f = [
 	CHARACTER_FEMALE_02,
@@ -17,14 +29,26 @@ const character_mesh_array_f = [
 	CHARACTER_FEMALE_05,
 	CHARACTER_FEMALE_06,
 	CHARACTER_FEMALE_07,
+	CHARACTER_FEMALE_08,
+	CHARACTER_FEMALE_09,
+	CHARACTER_FEMALE_10,
 ]
 
 const character_mesh_array_m = [
 	CHARACTER_02,
 	CHARACTER_03,
 	CHARACTER_04,
+	CHARACTER_05,
+	CHARACTER_06,
+	CHARACTER_07,
+	CHARACTER_08,
+	CHARACTER_09,
+	CHARACTER_10,
 ]
 
+const character_mesh_array_s = [
+	CHARACTER_28_HM,
+]
 enum SUB_MANAGERS {
 	UI_MANAGER,
 	INPUT_MANAGER,

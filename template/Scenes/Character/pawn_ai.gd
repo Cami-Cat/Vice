@@ -1,6 +1,8 @@
 class_name pawn_AI
 extends Node3D
 
+const HUNTER_DETECTION_AREA = preload("res://hunter_detection_area.tscn")
+
 signal behaviour_chosen()
 signal idle_timeout()
 signal shot()
@@ -72,7 +74,7 @@ func _can_see_player_pawn() -> bool:
 	if player_raycast.is_colliding():
 		if player_raycast.get_collider() != player_pawn: 
 			return false
-		print("Colliding with: %s" % player_raycast.get_collider()) 
+		GVar.signal_bus.hunter_see_player.emit(global_position)
 		return true
 	return false
 	
@@ -83,6 +85,8 @@ func _ready() -> void:
 	just_idled = true
 	await get_tree().create_timer(0.5).timeout
 	choose_next_behaviour()
+	if ai_type == AI_TYPE.HUNTER:
+		add_child(HUNTER_DETECTION_AREA.instantiate())
 	return
 
 func _alert(mask_state : GVar.MASK) -> void:
@@ -98,15 +102,21 @@ func _do_behaviour() -> void:
 	match current_behaviour:
 		BEHAVIOUR.IDLE:
 			_idle()
-			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.IDLE)
+			if ai_type == AI_TYPE.CITIZEN:
+				pawn.character_model.change_anim(CharacterModel.ANIM_STATE.IDLE)
+			else:
+				pawn.character_model.change_anim(CharacterModel.ANIM_STATE.IDLE_GUN)
 		BEHAVIOUR.WALK:
 			ai_speed = AI_WALK_SPEED
 			_set_target_position()
-			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
+			if ai_type == AI_TYPE.CITIZEN:
+				pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
+			else:
+				pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK_GUN)
 		BEHAVIOUR.HUNTING:
 			ai_speed = AI_WALK_SPEED
 			_set_target_position()
-			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK)
+			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.WALK_GUN)
 		BEHAVIOUR.FLEE:
 			ai_speed = AI_RUN_SPEED
 			pawn.character_model.change_anim(CharacterModel.ANIM_STATE.RUN)
@@ -153,7 +163,7 @@ func _go_to_target_position() -> void:
 	navigation_agent_3d.set_velocity(direction)
 	return
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if pawn.is_dead : 
 		pawn.velocity = Vector3.ZERO
 		return
@@ -195,8 +205,10 @@ func _aim_at_player() -> void:
 func _shoot_at_player() -> void:
 	# Aiming cooldown
 	await get_tree().create_timer(randf_range(1.0, 2.5)).timeout
+	
 	if player_raycast.is_colliding() && player_raycast.get_collider() is Pawn:
 		player_raycast.get_collider().die()
+		GVar.signal_bus.hunter_shot_player.emit(global_position)
 		# Shooting cooldown
 		await get_tree().create_timer(randf_range(1.5, 3.5)).timeout
 		is_shooting = false

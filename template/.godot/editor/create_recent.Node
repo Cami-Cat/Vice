@@ -5,6 +5,10 @@ Control
 VBoxContainer
 CollisionShape3D
 Area3D
+Node
+Decal
+CPUParticles3D
+CPUParticles2D
 MeshInstance3D
 StaticBody3D
 Camera3D
