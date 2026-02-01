@@ -12,6 +12,7 @@ const PAWN_SCENE = preload("res://Scenes/Character/Pawn.tscn")
 @export var spawn_limit : int = 25
 
 func _ready() -> void:
+	await get_tree().create_timer(0.1).timeout
 	_initial_spawn()
 	_start_spawning()
 	spawn_complete.connect(_start_spawning)
@@ -39,5 +40,6 @@ func _spawn_npc() -> void:
 	self.add_child(pawn)
 	pawn.pawn_ai.ai_type = pawn_type
 	pawn.global_position = self.global_position
+	GVar.signal_bus.player_died.connect(pawn.pawn_ai._player_dead)
 	spawn_complete.emit()
 	return
